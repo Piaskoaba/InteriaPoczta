@@ -16,8 +16,6 @@ public class MailPage extends BasePage {
 
     public void ClearInteriaAllert(){
 
-    driver.findElement(
-
 
     }
 

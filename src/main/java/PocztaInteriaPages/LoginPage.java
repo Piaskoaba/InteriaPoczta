@@ -8,35 +8,38 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
 
-    WebElement logWindow;
-    WebElement passWindow;
-
-    WebElement logIn;
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
-    public void loginWindow() {
-        driver.findElement(By.cssSelector("[title='Poczta'"));
-        logWindow.click();
-        String name = "adam.testowy@interia.pl";
-        logWindow.sendKeys(name);
 
+    @FindBy(xpath = "//*[@id=\"sitebar\"]/form/div[1]/div[1]")
+    WebElement logWindow;
+
+
+    @FindBy(id = "password")
+    WebElement passWindow;
+
+    @FindBy(xpath = "//*[@id='sitebar']/form/button")
+    WebElement logIn;
+
+
+    public void fillLoginWindow(String login) {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(logWindow));
+        logWindow.sendKeys(login);
 
     }
-    public void passwordWindow(){
 
-        driver.findElement(By.id("email"));
-        passWindow.click();
-        String password = "PocztaInteria123!";
-        passWindow.sendKeys(password);
+    public void fillPasswordWindow(String mailPassword) {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(passWindow));
+        passWindow.sendKeys(mailPassword);
     }
 
-    public void logInButton(){
-
-        driver.findElement(By.xpath("//*[@id='sitebar']/form/button"));
+    public MailPage clickLogInButton() {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(logIn));
         logIn.click();
+        return new MailPage(driver);
     }
 
 

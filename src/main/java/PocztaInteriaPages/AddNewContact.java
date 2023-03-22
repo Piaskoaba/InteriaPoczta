@@ -8,41 +8,44 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Random;
 import java.util.random.RandomGenerator;
-public class AddNewContact {
+public class AddNewContact {}
 
     //ToDo Metoda generujaca imie i nazwisko, metoda generująca email na podstawie imienia i nazwiska 999-99999, generator numerow
 
 
+   /* public String randomGenerator(String xyz) {
 
-    File fileNames = new File("Names");
-    File fileSureNames = new File("SureNames");
+        File fileNames = new File("Names");
+        File fileSureNames = new File("SureNames");
 
-    FileReader nameData;
+        FileReader nameData;
 
-    {
-        try {
-            nameData = new FileReader(fileNames);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+        {
+            try {
+                nameData = new FileReader(fileNames);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
-    }
 
-    FileReader sureNameData;
+        FileReader sureNameData;
 
-    {
-        try {
-            sureNameData = new FileReader(fileSureNames);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+        {
+            try {
+                sureNameData = new FileReader(fileSureNames);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
-    }
 
-    BufferedReader bf = new BufferedReader();
-
+        BufferedReader bf = new BufferedReader();
 
 
-    public String RandomNamesGenerator(){
+        public String RandomNamesGenerator () {
 
 
+        }
     }
 }
+
+    */

@@ -10,22 +10,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class HomePage extends BasePage {
 
 
-    public HomePage(WebDriver driver){
+    public HomePage(WebDriver driver) {
         super(driver);
     }
 
-
+    @FindBy(xpath = "/html/body/div[2]/div[3]/div/header/nav/ul/li[1]/a")
     WebElement mailButton;
 
-    public void clickMailButton(){
-        driver.findElement(By.cssSelector("[title='Poczta'"));
+    public LoginPage clickMailButton() {
+
         webDriverWait.until(ExpectedConditions.elementToBeClickable(mailButton));
         mailButton.click();
 
-
+        return new LoginPage(driver);
     }
-
-
 
 
 }
