@@ -22,28 +22,16 @@ public class TestJava {
     public void demoTest() {
 
 
-        WebDriver driver = new ChromeDriver();
-
-        driver.manage().window().setSize(new Dimension(1920, 1080));
-        driver.get("http://interia.pl");            //wejdz na strone interia.pl
-
-        WebElement cookieButton = driver.findElement(By.cssSelector("body > div.rodo-popup > div.rodo-popup-buttons > button.rodo-popup-agree")); //lokalizacja przycisku rodo/cookies
-        cookieButton.click();       //click
-
 
 
 
        // String myLogin = "adam.testowyy@interia.pl";
         //String MyPassword = "PocztaInteria123!";
 
-
-        // driver.quit();
-
-
-
     }
 
-@AfterMethod
-@AfterClass
+
 }
+//@AfterClass
+
 

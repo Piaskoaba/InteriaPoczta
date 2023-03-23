@@ -17,6 +17,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "/html/body/div[2]/div[3]/div/header/nav/ul/li[1]/a")
     WebElement mailButton;
 
+
     public LoginPage clickMailButton() {
 
         webDriverWait.until(ExpectedConditions.elementToBeClickable(mailButton));
@@ -25,5 +26,7 @@ public class HomePage extends BasePage {
         return new LoginPage(driver);
     }
 
-
 }
+
+
+
