@@ -5,6 +5,7 @@ import PocztaInteriaPages.LoginPage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -31,6 +32,7 @@ public class TestJava {
     public void demoTest() {
         homePage = new HomePage(driver);
         loginPage = homePage.clickMailButton();
+
 
 
 
