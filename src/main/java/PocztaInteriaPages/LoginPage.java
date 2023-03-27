@@ -25,6 +25,7 @@ public class LoginPage extends BasePage {
     WebElement logIn;
 
 
+
     public void fillLoginWindow(String login) {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(logWindow));
         logWindow.sendKeys(login);

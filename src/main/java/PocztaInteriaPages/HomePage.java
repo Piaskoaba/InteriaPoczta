@@ -16,7 +16,8 @@ public class HomePage extends BasePage {
 
     @FindBy(xpath = "/html/body/div[2]/div[3]/div/header/nav/ul/li[1]/a")
     WebElement mailButton;
-
+    @FindBy(xpath = "/html/body/div[3]/div[2]/button[3]") //to fix,2nd cookie button
+    WebElement clickTwo;
 
     public LoginPage clickMailButton() {
 
@@ -24,6 +25,14 @@ public class HomePage extends BasePage {
         mailButton.click();
 
         return new LoginPage(driver);
+    }
+
+
+    public void loginPageCookieButton(){
+
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(clickTwo));
+        clickTwo.click();
+
     }
 
 }

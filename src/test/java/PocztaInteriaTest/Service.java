@@ -48,6 +48,7 @@ public class Service {
         } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
             return false;
         }
+
     }
 
     public String urlStringInteria() {

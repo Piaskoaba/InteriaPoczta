@@ -1,21 +1,18 @@
 package PocztaInteriaTest;
 
-import PocztaInteriaPages.BasePage;
 import PocztaInteriaPages.HomePage;
 import PocztaInteriaPages.LoginPage;
-import org.junit.AfterClass;
-import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
+
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.Scanner;
 
 public class TestJava {
-
+    LoginPage loginPage;
+    HomePage homePage;
     Service service;
     WebDriver driver;
 
@@ -32,8 +29,12 @@ public class TestJava {
 
     @Test
     public void demoTest() {
-        HomePage homePage = new HomePage(driver);
-        homePage.clickMailButton();
+        homePage = new HomePage(driver);
+        loginPage = homePage.clickMailButton();
+
+
+
+
 
 
 
