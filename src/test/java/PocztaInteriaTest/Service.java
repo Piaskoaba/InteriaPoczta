@@ -6,13 +6,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Service extends BasePage {
+public class Service {
 
+    WebDriver driver;
+    WebDriverWait webDriverWait;
 
     public Service(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
+        webDriverWait = new WebDriverWait(driver, 15);
+        PageFactory.initElements(driver, this);
     }
 
     @FindBy(xpath = "/html/body/div[11]/div[2]/button[3]")
@@ -32,7 +38,7 @@ public class Service extends BasePage {
     }
 
     public String chromeDriverUrl() {
-        return "driver/chrome,driver";
+        return "webdriver.chrome.driver";
     }
 
     boolean isCookieButtonAbleToClick() {
@@ -42,10 +48,18 @@ public class Service extends BasePage {
         } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
             return false;
         }
-
     }
 
+    public String urlStringInteria() {
+        return "https://www.interia.pl";
+    }
+public String getDriver(){
+    return "C:/Program Files/DRIVERS/chromedriver.exe";
+
 }
+}
+
+
 
 
 
