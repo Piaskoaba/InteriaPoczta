@@ -22,5 +22,5 @@ public class BasePage {  //repo Chrystian, Page Factory, !InitElements!
 
     }
 
-
+//.
 }
