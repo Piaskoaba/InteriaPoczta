@@ -14,7 +14,7 @@ public class LoginPage extends BasePage {
     }
 
 
-    @FindBy(xpath = "//*[@id=\"sitebar\"]/form/div[1]/div[1]")
+    @FindBy(xpath = "//*[@id=\"email\"]")
     WebElement logWindow;
 
 

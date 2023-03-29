@@ -16,7 +16,7 @@ public class HomePage extends BasePage {
 
     @FindBy(xpath = "/html/body/div[2]/div[3]/div/header/nav/ul/li[1]/a")
     WebElement mailButton;
-    @FindBy(xpath = "/html/body/div[3]/div[2]/button[3]") //to fix,2nd cookie button
+    @FindBy(xpath= "/html/body/div[3]/div[2]/button[3]")
     WebElement clickTwo;
 
     public LoginPage clickMailButton() {
@@ -34,6 +34,7 @@ public class HomePage extends BasePage {
         clickTwo.click();
 
     }
+
 
 }
 
