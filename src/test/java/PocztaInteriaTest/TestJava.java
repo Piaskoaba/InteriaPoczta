@@ -3,6 +3,7 @@ package PocztaInteriaTest;
 import PocztaInteriaPages.HomePage;
 import PocztaInteriaPages.LoginPage;
 import PocztaInteriaPages.MailPage;
+import PocztaInteriaPages.NewMessage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -18,6 +19,8 @@ public class TestJava {
     Service service;
     WebDriver driver;
     MailPage mailPage;
+
+    NewMessage newMessage;
 
     @BeforeMethod(alwaysRun = true)
     public void runBrowser() {
@@ -37,6 +40,9 @@ public class TestJava {
         loginPage.fillLoginWindow("adam.testowyy@interia.pl");
         loginPage.fillPasswordWindow("PocztaInteria123!");
         mailPage = loginPage.clickLogInButton();
+        newMessage.clickNewMessegeButton();
+
+
 
 
 
