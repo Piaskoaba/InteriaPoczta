@@ -14,9 +14,9 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "/html/body/div[2]/div[3]/div/header/nav/ul/li[1]/a")
+    @FindBy(xpath = "//a[contains(@class, 'mail')]")
     WebElement mailButton;
-    @FindBy(xpath= "/html/body/div[3]/div[2]/button[3]")
+    @FindBy(xpath= "//button[@class='rodo-popup-agree']")
     WebElement clickTwo;
 
     public LoginPage clickMailButton() {

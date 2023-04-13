@@ -32,8 +32,8 @@ public class TestJava {
     @Test
     public void demoTest() {
         homePage = new HomePage(driver);
-        loginPage = homePage.clickMailButton();
         homePage.loginPageCookieButton();
+        loginPage = homePage.clickMailButton();
         loginPage.fillLoginWindow("adam.testowyy@interia.pl");
         loginPage.fillPasswordWindow("PocztaInteria123!");
         mailPage = loginPage.clickLogInButton();
