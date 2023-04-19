@@ -40,7 +40,7 @@ public class TestJava {
         newMessagePage = mailPage.clickNewMessegeButton();
         newMessagePage.fillReciver("bartosz.piaskowskii@gmail.com");
         newMessagePage.fillMailSubject("Random mail subject");
-
+        newMessagePage.clickSendMessageButton();
         // String myLogin = "adam.testowyy@interia.pl";
         //String MyPassword = "PocztaInteria123!";
 

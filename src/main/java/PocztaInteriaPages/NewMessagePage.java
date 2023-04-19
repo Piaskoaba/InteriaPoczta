@@ -24,6 +24,8 @@ public class NewMessagePage extends BasePage {
     @FindBy(id = "subject")
     WebElement mailSubject;
 
+    @FindBy(xpath =  "//*[@id='wrapper']//div[@class='dialog-list dialog-list--shown']/div/div/div/div/div[2]/div/div[@class='composition__wrapper']/div[@class='composition__basic-actions mail-confirm-allowed']/button")
+    WebElement sendMessage;
     public void fillReciver(String deliveryAddress){
         webDriverWait.until(ExpectedConditions.elementToBeClickable(reciverWindow));
         reciverWindow.sendKeys(deliveryAddress);
@@ -35,5 +37,9 @@ public class NewMessagePage extends BasePage {
 
     }
 
+    public void clickSendMessageButton (){
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(sendMessage));
+        sendMessage.click();
+    }
 
 }
