@@ -13,7 +13,7 @@ public class NewMessagePage extends BasePage {
         super(driver);
     }
 
-   // String reciver = "bartosz.piaskowskii@gmail.com";
+
 
     @FindBy(id = "tinymce")
     WebElement textWindow;

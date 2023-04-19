@@ -38,7 +38,7 @@ public class TestJava {
         loginPage.fillPasswordWindow("PocztaInteria123!");
         mailPage = loginPage.clickLogInButton();
         newMessagePage = mailPage.clickNewMessegeButton();
-        newMessagePage.fillReciver("bartosz.piaskowskii@gmail.com");
+        newMessagePage.fillReciver("@gmail.com");
         newMessagePage.fillMailSubject("Random mail subject");
         newMessagePage.clickSendMessageButton();
         // String myLogin = "adam.testowyy@interia.pl";
