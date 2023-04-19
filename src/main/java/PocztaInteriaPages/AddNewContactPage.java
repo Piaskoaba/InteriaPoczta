@@ -1,14 +1,7 @@
 package PocztaInteriaPages;
 
 
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Random;
-
-public class AddNewContact {}
+public class AddNewContactPage {}
 
     //ToDo Metoda generujaca imie i nazwisko, metoda generująca email na podstawie imienia i nazwiska 999-99999, generator numerow
 

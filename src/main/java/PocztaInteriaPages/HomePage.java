@@ -1,6 +1,7 @@
 package PocztaInteriaPages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,7 +17,7 @@ public class HomePage extends BasePage {
 
     @FindBy(xpath = "//a[contains(@class, 'mail')]")
     WebElement mailButton;
-    @FindBy(xpath= "//button[@class='rodo-popup-agree']")
+    @FindBy(xpath = "//button[@class='rodo-popup-agree']")
     WebElement clickTwo;
 
     public LoginPage clickMailButton() {
@@ -28,15 +29,23 @@ public class HomePage extends BasePage {
     }
 
 
-    public void loginPageCookieButton(){
+    public void loginPageCookieButton() {
 
         webDriverWait.until(ExpectedConditions.elementToBeClickable(clickTwo));
         clickTwo.click();
 
     }
 
+    boolean isAvatarVisible(By avatar) {
+        try {
+            return driver.findElement(avatar).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
 
+
+        }
+
+    }
 }
-
 
 
