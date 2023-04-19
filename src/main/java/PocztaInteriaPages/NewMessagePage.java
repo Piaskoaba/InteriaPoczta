@@ -21,12 +21,19 @@ public class NewMessagePage extends BasePage {
     @FindBy(xpath = "//*[@id='wrapper']/div[contains(@class, 'dialog-list--shown')]/div/div/div/div/div[2]/div/div[contains(@class, 'composition__wrapper')]/div[contains(@class, 'email-input-plain-group')]/div[contains(@class, 'composition-to')]/div/input\n")
     WebElement reciverWindow;
 
+    @FindBy(id = "subject")
+    WebElement mailSubject;
 
     public void fillReciver(String deliveryAddress){
         webDriverWait.until(ExpectedConditions.elementToBeClickable(reciverWindow));
         reciverWindow.sendKeys(deliveryAddress);
     }
 
+    public void fillMailSubject(String writeSubject){
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(mailSubject));
+        mailSubject.sendKeys(writeSubject);
+
+    }
 
 
 }
