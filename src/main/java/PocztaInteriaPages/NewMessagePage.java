@@ -13,7 +13,7 @@ public class NewMessagePage extends BasePage {
         super(driver);
     }
 
-    String reciver = "bartosz.piaskowskii@gmail.com";
+   // String reciver = "bartosz.piaskowskii@gmail.com";
 
     @FindBy(id = "tinymce")
     WebElement textWindow;
@@ -22,9 +22,9 @@ public class NewMessagePage extends BasePage {
     WebElement reciverWindow;
 
 
-    public void fillReciver(){
+    public void fillReciver(String deliveryAddress){
         webDriverWait.until(ExpectedConditions.elementToBeClickable(reciverWindow));
-        reciverWindow.sendKeys(reciver);
+        reciverWindow.sendKeys(deliveryAddress);
     }
 
 
