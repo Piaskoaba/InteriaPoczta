@@ -29,10 +29,11 @@ public class MailPage extends BasePage {
 
     }
 
-    boolean isAvatarVisible (By avatar) {
+    public boolean isAvatarVisible() {
         try {
-            return driver.findElement(avatar).isDisplayed();
-        } catch (NoSuchElementException e) {
+            webDriverWait.until(ExpectedConditions.visibilityOf(avatar)).isDisplayed();
+            return true;
+        } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
             return false;
         }
 

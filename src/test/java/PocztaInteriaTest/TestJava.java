@@ -7,6 +7,7 @@ import PocztaInteriaPages.NewMessagePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -37,6 +38,7 @@ public class TestJava {
         loginPage.fillLoginWindow("adam.testowyy@interia.pl");
         loginPage.fillPasswordWindow("PocztaInteria123!");
         mailPage = loginPage.clickLogInButton();
+        Assert.assertTrue(mailPage.isAvatarVisible());
         newMessagePage = mailPage.clickNewMessegeButton();
         newMessagePage.fillReciver("@gmail.com");
         newMessagePage.fillMailSubject("Random mail subject");
