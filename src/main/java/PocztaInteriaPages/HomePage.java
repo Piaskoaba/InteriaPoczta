@@ -36,16 +36,17 @@ public class HomePage extends BasePage {
 
     }
 
-    boolean isAvatarVisible(By avatar) {
+
+    public boolean isMailButtonVisible() {
         try {
-            return driver.findElement(avatar).isDisplayed();
-        } catch (NoSuchElementException e) {
+            webDriverWait.until(ExpectedConditions.visibilityOf(mailButton)).isDisplayed();
+            return true;
+        } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
             return false;
-
-
         }
-
     }
+
 }
+
 
 

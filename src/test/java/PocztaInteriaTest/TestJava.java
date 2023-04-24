@@ -34,11 +34,13 @@ public class TestJava {
     public void demoTest() {
         homePage = new HomePage(driver);
         homePage.loginPageCookieButton();
+        Assert.assertTrue(homePage.isMailButtonVisible());
         loginPage = homePage.clickMailButton();
         loginPage.fillLoginWindow("adam.testowyy@interia.pl");
         loginPage.fillPasswordWindow("PocztaInteria123!");
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(mailPage.isAvatarVisible());
+        Assert.assertTrue(mailPage.IsMailIconVisible());
         newMessagePage = mailPage.clickNewMessegeButton();
         newMessagePage.fillReciver("@gmail.com");
         newMessagePage.fillMailSubject("Random mail subject");

@@ -19,6 +19,9 @@ public class MailPage extends BasePage {
     @FindBy(xpath = "//span[@class='navigation__new__text']")
     WebElement messageButton;
 
+    @FindBy(xpath = "//*[@id=\"wrapper\"]//span[@class=\"icon icon-inbox\"]")
+    WebElement recivedButton;
+
 
     public NewMessagePage clickNewMessegeButton() {
 
@@ -37,6 +40,16 @@ public class MailPage extends BasePage {
             return false;
         }
 
+    }
+
+    public boolean IsMailIconVisible() {
+
+        try {
+            webDriverWait.until(ExpectedConditions.visibilityOf(recivedButton)).isDisplayed();
+            return true;
+        } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
     }
 
 
