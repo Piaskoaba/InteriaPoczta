@@ -1,9 +1,6 @@
 package PocztaInteriaTest;
 
-import PocztaInteriaPages.HomePage;
-import PocztaInteriaPages.LoginPage;
-import PocztaInteriaPages.MailPage;
-import PocztaInteriaPages.NewMessagePage;
+import PocztaInteriaPages.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -17,6 +14,8 @@ public class TestJava {
     Service service;
     WebDriver driver;
     MailPage mailPage;
+
+    AddNewContactPage addNewContactPage;
 
     NewMessagePage newMessagePage;
 
@@ -44,7 +43,10 @@ public class TestJava {
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(mailPage.isAvatarVisible(),"Avatar is not  visible");
         Assert.assertTrue(mailPage.IsMailIconVisible(),"Icon is not visible");
+        driver.navigate().back();
         newMessagePage = mailPage.clickNewMessegeButton();
+
+        addNewContactPage.clickContactBookButton();
         newMessagePage.fillReciver("@gmail.com");
         newMessagePage.fillMailSubject("Random mail subject");
         //newMessagePage.fillTextArea("This is your email message");

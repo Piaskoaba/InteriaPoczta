@@ -2,10 +2,13 @@ package PocztaInteriaPages;
 
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import javax.naming.Name;
 import java.io.*;
-import java.util.Scanner;
+import java.util.Random;
+
 
 public class AddNewContactPage extends BasePage {
 
@@ -13,6 +16,7 @@ public class AddNewContactPage extends BasePage {
     //ToDo Metoda generujaca imie i nazwisko, metoda generująca email na podstawie imienia i nazwiska 999-99999, generator numerow
     public AddNewContactPage(WebDriver driver) throws FileNotFoundException {
         super(driver);
+
     }
 
 
@@ -25,18 +29,32 @@ public class AddNewContactPage extends BasePage {
     //  }
 
 
-    public void namesTabele() {
+    @FindBy(xpath = "//*[@id=\"wrapper\"]/section[4]/div/div/div[2]")
+    WebElement contaktBook;
 
-        String[] names = {"Anna", "Bogumiła", "Aneta", "Maria", "Kazimiera", "Justyna", "Marlena", "Sylwia", "Aleksandra", "Marianna", "Eugenia"};
+    Random randomNamesAndSureNamesGenerator = new Random();
 
+
+    String[] names = {"Anna", "Bogumiła", "Aneta", "Maria", "Kazimiera", "Justyna", "Marlena", "Sylwia", "Aleksandra", "Marianna", "Eugenia"};
+
+
+    String[] sureNames = {"Kowalska", "Michalska", "Janiak", "Kozioł", "Balcerzak", "Nowak", "Posarek", "Janicka", "Woźniak", "Bojarska", "Kulesza"};
+
+    Random namesAndSurenamesGenerator = new Random();
+
+
+    String randomNames = names[randomNamesAndSureNamesGenerator.nextInt(names.length)];
+
+    String randomSureNames = sureNames[randomNamesAndSureNamesGenerator.nextInt(sureNames.length)];
+
+    public MailPage clickContactBookButton() {
+
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(contaktBook));
+        contaktBook.click();
+
+        return new MailPage(driver);
     }
 
-    public void sureNamesTabele() {
 
-        String[] names = {"Kowalska", "Michalska", "Janiak", "Kozioł", "Balcerzak", "Nowak", "Posarek", "Janicka", "Woźniak", "Bojarska", "Kulesza"};
-
-
-
-
-    }
 }
+
