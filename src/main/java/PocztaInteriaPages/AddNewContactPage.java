@@ -3,8 +3,8 @@ package PocztaInteriaPages;
 
 import org.openqa.selenium.WebDriver;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import javax.naming.Name;
+import java.io.*;
 import java.util.Scanner;
 
 public class AddNewContactPage extends BasePage {
@@ -16,22 +16,27 @@ public class AddNewContactPage extends BasePage {
     }
 
 
-    public static void main(String[] args) {
+    //  public static void main(String[] args) throws FileNotFoundException {
+//
+    //      File namesFile = new File("C:\\Users\\barte\\OneDrive\\Pulpit\\InteriaPoczta\\src\\main\\resources");
+    //      Scanner scannerNames = new Scanner(namesFile);
+    //      String choosenRandomName = scannerNames.nextLine();
+    //      System.out.println(choosenRandomName);
+    //  }
 
 
-            File file = new File("Names");
-        try {
-            Scanner scanner = new Scanner(file);
+    public void namesTabele() {
 
-            while (scanner.hasNextLine()){
-                String line = scanner.nextLine();
-                System.out.println(line);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println();
-        }
+        String[] names = {"Anna", "Bogumiła", "Aneta", "Maria", "Kazimiera", "Justyna", "Marlena", "Sylwia", "Aleksandra", "Marianna", "Eugenia"};
+
+    }
+
+    public void sureNamesTabele() {
+
+        String[] names = {"Kowalska", "Michalska", "Janiak", "Kozioł", "Balcerzak", "Nowak", "Posarek", "Janicka", "Woźniak", "Bojarska", "Kulesza"};
+
+
 
 
     }
-    }
-
+}

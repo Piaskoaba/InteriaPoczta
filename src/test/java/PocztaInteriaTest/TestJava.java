@@ -36,16 +36,20 @@ public class TestJava {
         homePage.loginPageCookieButton();
         Assert.assertTrue(homePage.isMailButtonVisible());
         loginPage = homePage.clickMailButton();
-        loginPage.fillLoginWindow("adam.testowyy@interia.pl");
+        String myLogin = "adam.testowyy@interia.pl";
+        loginPage.fillLoginWindow(myLogin);
+        //String getLoginInput = loginPage.getLoginInput();
+        //Assert.assertEquals(myLogin,getLoginInput);
         loginPage.fillPasswordWindow("PocztaInteria123!");
         mailPage = loginPage.clickLogInButton();
-        Assert.assertTrue(mailPage.isAvatarVisible());
-        Assert.assertTrue(mailPage.IsMailIconVisible());
+        Assert.assertTrue(mailPage.isAvatarVisible(),"Avatar is not  visible");
+        Assert.assertTrue(mailPage.IsMailIconVisible(),"Icon is not visible");
         newMessagePage = mailPage.clickNewMessegeButton();
         newMessagePage.fillReciver("@gmail.com");
         newMessagePage.fillMailSubject("Random mail subject");
+        //newMessagePage.fillTextArea("This is your email message");
         newMessagePage.clickSendMessageButton();
-        // String myLogin = "adam.testowyy@interia.pl";
+
         //String MyPassword = "PocztaInteria123!";
 
     }

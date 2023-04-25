@@ -14,9 +14,11 @@ public class LoginPage extends BasePage {
     }
 
 
-    @FindBy(xpath = "//*[@id=\"email\"]")
+    @FindBy(xpath = "//*[@id='email']")
     WebElement logWindow;
 
+   //@FindBy(xpath = "/html/body/div[1]/div[1]/div[1]/form/div[1]/div[1]/input")
+   //WebElement logWindow2;
 
     @FindBy(id = "password")
     WebElement passWindow;
@@ -43,7 +45,12 @@ public class LoginPage extends BasePage {
         return new MailPage(driver);
     }
 
+   // public String getLoginInput(){
+   //     webDriverWait.until(ExpectedConditions.elementToBeClickable(logWindow2));
+   //     String a = logWindow2.getText();
+   //     return a;
+    }
 
 
 
-}
+

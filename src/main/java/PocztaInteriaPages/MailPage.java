@@ -34,8 +34,8 @@ public class MailPage extends BasePage {
 
     public boolean isAvatarVisible() {
         try {
-            webDriverWait.until(ExpectedConditions.visibilityOf(avatar)).isDisplayed();
-            return true;
+            return webDriverWait.until(ExpectedConditions.visibilityOf(avatar)).isDisplayed();
+
         } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
             return false;
         }
