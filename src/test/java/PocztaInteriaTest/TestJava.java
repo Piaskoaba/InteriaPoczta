@@ -43,8 +43,8 @@ public class TestJava {
         //Assert.assertEquals(myLogin,getLoginInput);
         loginPage.fillPasswordWindow("PocztaInteria123!");
         mailPage = loginPage.clickLogInButton();
-        Assert.assertTrue(mailPage.isAvatarVisible(),"Avatar is not  visible");
-        Assert.assertTrue(mailPage.IsMailIconVisible(),"Icon is not visible");
+        Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
+        Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
 
         newMessagePage = mailPage.clickNewMessegeButton();
 
@@ -57,21 +57,26 @@ public class TestJava {
 
     }
 
-@Test
-    public void addcontactTest() throws FileNotFoundException {
+    @Test
+    public void addContactTest() {
 
-    homePage = new HomePage(driver);
-    homePage.loginPageCookieButton();
-    Assert.assertTrue(homePage.isMailButtonVisible());
-    loginPage = homePage.clickMailButton();
-    String myLogin = "adam.testowyy@interia.pl";
-    loginPage.fillLoginWindow(myLogin);
-    loginPage.fillPasswordWindow("PocztaInteria123!");
-    mailPage = loginPage.clickLogInButton();
-    Assert.assertTrue(mailPage.isAvatarVisible(),"Avatar is not  visible");
-    Assert.assertTrue(mailPage.IsMailIconVisible(),"Icon is not visible");
-    addNewContactPage = mailPage.clickContactBookButton();
-}
+        homePage = new HomePage(driver);
+        homePage.loginPageCookieButton();
+        Assert.assertTrue(homePage.isMailButtonVisible());
+        loginPage = homePage.clickMailButton();
+        String myLogin = "adam.testowyy@interia.pl";
+        loginPage.fillLoginWindow(myLogin);
+        loginPage.fillPasswordWindow("PocztaInteria123!");
+        mailPage = loginPage.clickLogInButton();
+        Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
+        Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
+        mailPage.clickContactBookButton();
+        mailPage.contatctButton();
+        mailPage.contactNameLabel();
+        
+
+
+    }
 }
 //@AfterClass
 

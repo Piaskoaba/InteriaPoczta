@@ -18,6 +18,8 @@ public class MailPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='wrapper']//section[contains(@class,'section--sidebar')]/div/div[contains(@class,'sidebar__main-panel')]/div[1]/div[2]/div/div")
     WebElement avatar;
+
+
     @FindBy(xpath = "//span[@class='navigation__new__text']")
     WebElement messageButton;
 
@@ -26,6 +28,12 @@ public class MailPage extends BasePage {
 
     @FindBy(xpath = "//*[@id=\"wrapper\"]/section[4]/div/div[1]/div[2]")
     WebElement contaktBook;
+
+    @FindBy(xpath = "/html/body/div[2]/section[4]/div/div[2]/div[1]/div/span[1]")
+    WebElement contatctButton;
+
+    @FindBy(xpath = "//*[@id=\"name\"]")
+    WebElement contactNameLabel;
 
     public NewMessagePage clickNewMessegeButton() {
 
@@ -55,12 +63,28 @@ public class MailPage extends BasePage {
             return false;
         }
     }
-    public AddNewContactPage clickContactBookButton() throws FileNotFoundException {
+
+
+    public MailPage contatctButton() {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(contatctButton));
+        contatctButton.click();
+        return new MailPage(driver);
+
+    }
+
+    public MailPage contactNameLabel() {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(contactNameLabel));
+        contactNameLabel.click();
+        return new MailPage(driver);
+    }
+
+    public MailPage clickContactBookButton() {
 
         webDriverWait.until(ExpectedConditions.elementToBeClickable(contaktBook));
         contaktBook.click();
 
-        return new AddNewContactPage(driver);
+        return new MailPage(driver);
     }
+
 
 }

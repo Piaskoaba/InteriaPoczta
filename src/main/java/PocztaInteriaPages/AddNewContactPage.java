@@ -28,25 +28,30 @@ public class AddNewContactPage extends BasePage {
     //      System.out.println(choosenRandomName);
     //  }
 
-    
-
-    Random randomNamesAndSureNamesGenerator = new Random();
-
 
     String[] names = {"Anna", "Bogumiła", "Aneta", "Maria", "Kazimiera", "Justyna", "Marlena", "Sylwia", "Aleksandra", "Marianna", "Eugenia"};
 
 
     String[] sureNames = {"Kowalska", "Michalska", "Janiak", "Kozioł", "Balcerzak", "Nowak", "Posarek", "Janicka", "Woźniak", "Bojarska", "Kulesza"};
 
-    Random namesAndSurenamesGenerator = new Random();
+
+    int pickNames = (int) (Math.random() * names.length);
+    String choosenName = names[pickNames];
 
 
-    String randomNames = names[randomNamesAndSureNamesGenerator.nextInt(names.length)];
+    int pickSureNames = (int) (Math.random() * sureNames.length);
+    String choosenSureNames = sureNames[pickSureNames];
 
-    String randomSureNames = sureNames[randomNamesAndSureNamesGenerator.nextInt(sureNames.length)];
 
+    // String randomSureNames = sureNames[randomNamesAndSureNamesGenerator.nextInt(sureNames.length)];
 
+    public String fillContactName() {
+
+        return choosenName + choosenSureNames;
+    }
 
 
 }
+
+
 
