@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.io.FileNotFoundException;
+
 public class MailPage extends BasePage {
 
 
@@ -22,6 +24,8 @@ public class MailPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"wrapper\"]//span[@class=\"icon icon-inbox\"]")
     WebElement recivedButton;
 
+    @FindBy(xpath = "//*[@id=\"wrapper\"]/section[4]/div/div[1]/div[2]")
+    WebElement contaktBook;
 
     public NewMessagePage clickNewMessegeButton() {
 
@@ -51,6 +55,12 @@ public class MailPage extends BasePage {
             return false;
         }
     }
+    public AddNewContactPage clickContactBookButton() throws FileNotFoundException {
 
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(contaktBook));
+        contaktBook.click();
+
+        return new AddNewContactPage(driver);
+    }
 
 }

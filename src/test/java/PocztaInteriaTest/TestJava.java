@@ -8,6 +8,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.FileNotFoundException;
+
 public class TestJava {
     LoginPage loginPage;
     HomePage homePage;
@@ -43,10 +45,9 @@ public class TestJava {
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(mailPage.isAvatarVisible(),"Avatar is not  visible");
         Assert.assertTrue(mailPage.IsMailIconVisible(),"Icon is not visible");
-        driver.navigate().back();
+
         newMessagePage = mailPage.clickNewMessegeButton();
 
-        addNewContactPage.clickContactBookButton();
         newMessagePage.fillReciver("@gmail.com");
         newMessagePage.fillMailSubject("Random mail subject");
         //newMessagePage.fillTextArea("This is your email message");
@@ -56,7 +57,21 @@ public class TestJava {
 
     }
 
+@Test
+    public void addcontactTest() throws FileNotFoundException {
 
+    homePage = new HomePage(driver);
+    homePage.loginPageCookieButton();
+    Assert.assertTrue(homePage.isMailButtonVisible());
+    loginPage = homePage.clickMailButton();
+    String myLogin = "adam.testowyy@interia.pl";
+    loginPage.fillLoginWindow(myLogin);
+    loginPage.fillPasswordWindow("PocztaInteria123!");
+    mailPage = loginPage.clickLogInButton();
+    Assert.assertTrue(mailPage.isAvatarVisible(),"Avatar is not  visible");
+    Assert.assertTrue(mailPage.IsMailIconVisible(),"Icon is not visible");
+    addNewContactPage = mailPage.clickContactBookButton();
+}
 }
 //@AfterClass
 

@@ -28,9 +28,7 @@ public class AddNewContactPage extends BasePage {
     //      System.out.println(choosenRandomName);
     //  }
 
-
-    @FindBy(xpath = "//*[@id=\"wrapper\"]/section[4]/div/div/div[2]")
-    WebElement contaktBook;
+    
 
     Random randomNamesAndSureNamesGenerator = new Random();
 
@@ -47,13 +45,7 @@ public class AddNewContactPage extends BasePage {
 
     String randomSureNames = sureNames[randomNamesAndSureNamesGenerator.nextInt(sureNames.length)];
 
-    public MailPage clickContactBookButton() {
 
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(contaktBook));
-        contaktBook.click();
-
-        return new MailPage(driver);
-    }
 
 
 }
