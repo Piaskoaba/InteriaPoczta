@@ -10,8 +10,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Service {
+import java.lang.reflect.Array;
 
+public class Service {
     WebDriver driver;
     WebDriverWait webDriverWait;
 
@@ -24,16 +25,8 @@ public class Service {
     @FindBy(xpath = "/html/body/div[11]/div[2]/button[3]")
     WebElement clickInteriaCookieButton;
 
-
-//2 metody
-    // 1 odpala przegladarke
-    // 2 zwraca string z url
-    //3 ewentualne cookies zamkniecie  public boolean isVisibleCookies
-
     public void startBrowser(String startUrlBrowser) {
-
         WebDriver driver = new ChromeDriver();  //
-
         driver.manage().window().setSize(new Dimension(1920, 1080));
     }
 
@@ -48,18 +41,24 @@ public class Service {
         } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
             return false;
         }
-
     }
 
     public String urlStringInteria() {
         return "https://www.interia.pl";
     }
-public String getDriver(){
-    return "C:/Program Files/DRIVERS/chromedriver.exe";
 
-}
-}
+    public String getDriver() {
+        return "C:/Program Files/DRIVERS/chromedriver.exe";
+    }
 
+    String[] names = {"Anna", "Bogumiła", "Aneta", "Maria", "Kazimiera", "Justyna", "Marlena", "Sylwia", "Aleksandra", "Marianna", "Eugenia"};
+    String[] sureNames = {"Kowalska", "Michalska", "Janiak", "Kozioł", "Balcerzak", "Nowak", "Pisarek", "Janicka", "Woźniak", "Bojarska", "Kulesza"};
+
+    public Array nameGenerator() {
+
+
+    }
+}
 
 
 

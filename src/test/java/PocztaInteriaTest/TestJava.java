@@ -16,9 +16,7 @@ public class TestJava {
     Service service;
     WebDriver driver;
     MailPage mailPage;
-
-    //AddNewContactPage addNewContactPage;
-
+    AddNewContactPage addNewContactPage;
     NewMessagePage newMessagePage;
 
     @BeforeMethod(alwaysRun = true)
@@ -29,7 +27,6 @@ public class TestJava {
         driver.get(service.urlStringInteria());
         driver.manage().window().maximize();
     }
-
 
     @Test
     public void demoTest() {
@@ -45,21 +42,14 @@ public class TestJava {
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
-
         newMessagePage = mailPage.clickNewMessegeButton();
-
         newMessagePage.fillReciver("@gmail.com");
         newMessagePage.fillMailSubject("Random mail subject");
-        //newMessagePage.fillTextArea("This is your email message");
         newMessagePage.clickSendMessageButton();
-
-        //String MyPassword = "PocztaInteria123!";
-
     }
 
     @Test
     public void addContactTest() {
-
         homePage = new HomePage(driver);
         homePage.loginPageCookieButton();
         Assert.assertTrue(homePage.isMailButtonVisible());
@@ -70,15 +60,12 @@ public class TestJava {
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
-        mailPage.clickContactBookButton();
-        mailPage.contatctButton();
-        mailPage.contactNameLabel();
-        mailPage.fillContactName();
-        
-
-
+        addNewContactPage = mailPage.clickContactBookButton();
+        addNewContactPage.contatctButton();
+        addNewContactPage.contactNameLabel();
+        addNewContactPage.fillContactName();
     }
 }
-//@AfterClass
+
 
 
