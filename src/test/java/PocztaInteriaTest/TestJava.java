@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.FileNotFoundException;
+import java.util.Random;
 
 public class TestJava {
     LoginPage loginPage;
@@ -27,7 +28,6 @@ public class TestJava {
         driver.get(service.urlStringInteria());
         driver.manage().window().maximize();
     }
-
     @Test
     public void demoTest() {
         homePage = new HomePage(driver);
@@ -64,6 +64,7 @@ public class TestJava {
         addNewContactPage.contatctButton();
         addNewContactPage.contactNameLabel();
         addNewContactPage.fillContactName();
+        addNewContactPage.fillEmailWindow();
     }
 }
 
