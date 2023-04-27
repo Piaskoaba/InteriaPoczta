@@ -35,6 +35,9 @@ public class MailPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"name\"]")
     WebElement contactNameLabel;
 
+
+
+
     public NewMessagePage clickNewMessegeButton() {
 
         webDriverWait.until(ExpectedConditions.elementToBeClickable(messageButton));
@@ -85,6 +88,26 @@ public class MailPage extends BasePage {
 
         return new MailPage(driver);
     }
+    String[] names = {"Anna", "Bogumiła", "Aneta", "Maria", "Kazimiera", "Justyna", "Marlena", "Sylwia", "Aleksandra", "Marianna", "Eugenia"};
 
 
+    String[] sureNames = {"Kowalska", "Michalska", "Janiak", "Kozioł", "Balcerzak", "Nowak", "Posarek", "Janicka", "Woźniak", "Bojarska", "Kulesza"};
+
+
+    int pickNames = (int) (Math.random() * names.length);
+    String choosenName = names[pickNames];
+
+
+    int pickSureNames = (int) (Math.random() * sureNames.length);
+    String choosenSureNames = sureNames[pickSureNames];
+
+
+    // String randomSureNames = sureNames[randomNamesAndSureNamesGenerator.nextInt(sureNames.length)];
+
+    public void fillContactName() {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(contactNameLabel));
+        contactNameLabel.sendKeys(choosenName + " "+ choosenSureNames);
+
+    }
 }
+

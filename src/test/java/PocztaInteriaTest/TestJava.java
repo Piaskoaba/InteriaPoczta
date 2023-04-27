@@ -17,7 +17,7 @@ public class TestJava {
     WebDriver driver;
     MailPage mailPage;
 
-    AddNewContactPage addNewContactPage;
+    //AddNewContactPage addNewContactPage;
 
     NewMessagePage newMessagePage;
 
@@ -73,6 +73,7 @@ public class TestJava {
         mailPage.clickContactBookButton();
         mailPage.contatctButton();
         mailPage.contactNameLabel();
+        mailPage.fillContactName();
         
 
 

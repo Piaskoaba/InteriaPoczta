@@ -7,10 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.*;
-import java.util.Random;
 
 
-public class AddNewContactPage extends BasePage {
+/*public class AddNewContactPage extends BasePage {
 
 
     //ToDo Metoda generujaca imie i nazwisko, metoda generująca email na podstawie imienia i nazwiska 999-99999, generator numerow
@@ -19,6 +18,8 @@ public class AddNewContactPage extends BasePage {
 
     }
 
+    @FindBy(xpath = "//*[@id=\"name\"]")
+    WebElement contactNameLabel;
 
     //  public static void main(String[] args) throws FileNotFoundException {
 //
@@ -45,13 +46,14 @@ public class AddNewContactPage extends BasePage {
 
     // String randomSureNames = sureNames[randomNamesAndSureNamesGenerator.nextInt(sureNames.length)];
 
-    public String fillContactName() {
+    public void fillContactName() {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(contactNameLabel));
+        contactNameLabel.sendKeys(choosenName, choosenSureNames);
 
-        return choosenName + choosenSureNames;
+    }
     }
 
-
-}
+*/
 
 
 
