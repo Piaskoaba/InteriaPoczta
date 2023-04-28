@@ -1,6 +1,6 @@
 package PocztaInteriaTest;
 
-import PocztaInteriaPages.BasePage;
+import PocztaInteriaPages.MailPage;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,13 +9,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.lang.reflect.Array;
 import java.util.Random;
 
 
 public class Service {
     WebDriver driver;
     WebDriverWait webDriverWait;
+
+    Random random = new Random();
+
 
     public Service(WebDriver driver) {
         this.driver = driver;
@@ -57,14 +59,12 @@ public class Service {
     String[] names = {"Anna", "Bogumiła", "Aneta", "Maria", "Kazimiera", "Justyna", "Marlena", "Sylwia", "Aleksandra", "Marianna", "Eugenia"};
     String[] sureNames = {"Kowalska", "Michalska", "Janiak", "Kozioł", "Balcerzak", "Nowak", "Pisarek", "Janicka", "Woźniak", "Bojarska", "Kulesza"};
 
-    public void randomNumbersGenerator() {
-        int min = 0;
-        int max = 999999;
-        int RandomNumGenerator = randomNumberGen.nextInt(max - min+1)+min;
-
-
+    public int RandomNumber(int min, int max) {
+        return random.nextInt(max - min + 1) + min;
     }
-}
+    }
+
+
 
 
 
