@@ -9,6 +9,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -56,13 +59,70 @@ public class Service {
         return "C:/Program Files/DRIVERS/chromedriver.exe";
     }
 
-    String[] names = {"Anna", "Bogumiła", "Aneta", "Maria", "Kazimiera", "Justyna", "Marlena", "Sylwia", "Aleksandra", "Marianna", "Eugenia"};
-    String[] sureNames = {"Kowalska", "Michalska", "Janiak", "Kozioł", "Balcerzak", "Nowak", "Pisarek", "Janicka", "Woźniak", "Bojarska", "Kulesza"};
-
-    public int RandomNumber(int min, int max) {
+    public int randomNumber(int min, int max) {
         return random.nextInt(max - min + 1) + min;
     }
+
+    public ArrayList<String> namesList() {
+        ArrayList<String> nameList = new ArrayList<String>();
+        nameList.add("Anna");
+        nameList.add("Bogumiła");
+        nameList.add("Maria");
+        nameList.add("Bożena");
+        nameList.add("Wiesława");
+        nameList.add("Katarzyna");
+        nameList.add("Bronisława");
+        nameList.add("Eugenia");
+        nameList.add("Aleksandra");
+        nameList.add("Monika");
+        return nameList;
     }
+    public ArrayList<String> sureNamesList() {
+        ArrayList<String> sureNameList = new ArrayList<>();
+        sureNameList.add("Antoniak");
+        sureNameList.add("Bogucka");
+        sureNameList.add("Kazimierczak");
+        sureNameList.add("Kowalska");
+        sureNameList.add("Andrzejewicz");
+        sureNameList.add("Kulesza");
+        sureNameList.add("Glapa");
+        sureNameList.add("Woźniak");
+        sureNameList.add("Balcerzak");
+        sureNameList.add("Wierzbińska");
+        sureNameList.add("Kulesza");
+        sureNameList.add("Kownacka");
+        return sureNameList;
+    }
+
+    public ArrayList<String> eMailsDomensList(){
+        ArrayList<String> eMailDomensList = new ArrayList<>();
+        eMailDomensList.add("@gmail.com");
+        eMailDomensList.add("@interia.com");
+        eMailDomensList.add("@interia.eu");
+        eMailDomensList.add("@interia.pl");
+        eMailDomensList.add("@wp.pl");
+        eMailDomensList.add("@vp.pl");
+        eMailDomensList.add("@wp.eu");
+        eMailDomensList.add("@me.com");
+        eMailDomensList.add("@onet.pl");
+        eMailDomensList.add("@onet.eu");
+        eMailDomensList.add("@tlen.pl");
+        return  eMailsDomensList();
+
+    }
+
+    public int returnListSize(ArrayList<String> list) {
+        return list.size();
+    }
+
+    public String returnRandomNameSureNameNumberEmail
+
+//ToDo osobne listy dla nazwisk, maili (numery ok) + metoda zwracajaca wielkosc listy z argumentem
+    //ToDo w argumencie przekazac liste, wziac wielkosc  listy i wylosowac randomowy numer, na podstawie wylosowanego numeru wybrac wartosc
+
+
+}
+
 
 
 

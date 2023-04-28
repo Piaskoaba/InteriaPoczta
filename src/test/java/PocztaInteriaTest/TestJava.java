@@ -28,6 +28,7 @@ public class TestJava {
         driver.get(service.urlStringInteria());
         driver.manage().window().maximize();
     }
+
     @Test
     public void demoTest() {
         homePage = new HomePage(driver);
@@ -50,6 +51,7 @@ public class TestJava {
 
     @Test
     public void addContactTest() {
+
         homePage = new HomePage(driver);
         homePage.loginPageCookieButton();
         Assert.assertTrue(homePage.isMailButtonVisible());
@@ -64,7 +66,10 @@ public class TestJava {
         addNewContactPage.contatctButton();
         addNewContactPage.contactNameLabel();
         addNewContactPage.fillContactName();
-        addNewContactPage.fillEmailWindow();
+        addNewContactPage.fillEmailWindow(
+        service.namesList().size();
+
+
     }
 }
 
