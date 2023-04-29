@@ -65,9 +65,9 @@ public class TestJava {
         addNewContactPage = mailPage.clickContactBookButton();
         addNewContactPage.contatctButton();
         addNewContactPage.contactNameLabel();
-        addNewContactPage.fillContactName();
-        addNewContactPage.fillEmailWindow(
-        service.namesList().size();
+        service = addNewContactPage.fillContactName();
+
+
 
 
     }

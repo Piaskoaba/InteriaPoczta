@@ -15,8 +15,6 @@ public class AddNewContactPage extends BasePage {
         super(driver);
     }
 
-    Random random = new Random();
-
     @FindBy(xpath = "//*[@id=\"name\"]")
     WebElement contactNameLabel;
     @FindBy(xpath = "//*[@id=\"email\"]")
@@ -31,7 +29,7 @@ public class AddNewContactPage extends BasePage {
     }
     public void fillContactName() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(contactNameLabel));
-        // contactNameLabel.sendKeys(choosenName + " " + choosenSureNames);
+        contactNameLabel.sendKeys();
     }
     public MailPage contactNameLabel() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(contactNameLabel));

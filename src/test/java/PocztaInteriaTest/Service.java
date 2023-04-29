@@ -77,6 +77,7 @@ public class Service {
         nameList.add("Monika");
         return nameList;
     }
+
     public ArrayList<String> sureNamesList() {
         ArrayList<String> sureNameList = new ArrayList<>();
         sureNameList.add("Antoniak");
@@ -94,7 +95,7 @@ public class Service {
         return sureNameList;
     }
 
-    public ArrayList<String> eMailsDomensList(){
+    public ArrayList<String> eMailsDomensList() {
         ArrayList<String> eMailDomensList = new ArrayList<>();
         eMailDomensList.add("@gmail.com");
         eMailDomensList.add("@interia.com");
@@ -107,21 +108,48 @@ public class Service {
         eMailDomensList.add("@onet.pl");
         eMailDomensList.add("@onet.eu");
         eMailDomensList.add("@tlen.pl");
-        return  eMailsDomensList();
-
+        return eMailsDomensList();
     }
+
+
+
+
+
+    public static String getRandomValue(ArrayList<String> list) {
+        Random rand = new Random();
+        int randomIndex = rand.nextInt(list.size());
+        String randomValue = list.get(randomIndex);
+        return randomValue;
+    }
+    String randomName = getRandomValue(namesList());
+    String randomSurename = getRandomValue(sureNamesList());
+    String randomMailDomen = getRandomValue(eMailsDomensList());
+
+
+
+
 
     public int returnListSize(ArrayList<String> list) {
         return list.size();
     }
+    public String returnRandomNameSureNameNumberEmail() {
+        return returnRandomNameSureNameNumberEmail();
+    }
 
-    public String returnRandomNameSureNameNumberEmail
+    public String fillContactNameWindow(){
+        return randomName + randomSurename;
+    }
+    public String fillContactMailWindow(){
+        return randomName + randomSurename + randomMailDomen;
+    }
+}
+
 
 //ToDo osobne listy dla nazwisk, maili (numery ok) + metoda zwracajaca wielkosc listy z argumentem
-    //ToDo w argumencie przekazac liste, wziac wielkosc  listy i wylosowac randomowy numer, na podstawie wylosowanego numeru wybrac wartosc
+//ToDo w argumencie przekazac liste, wziac wielkosc  listy i wylosowac randomowy numer, na podstawie wylosowanego numeru wybrac wartosc
 
 
-}
+
 
 
 
