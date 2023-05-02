@@ -10,7 +10,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -18,17 +17,13 @@ import java.util.Random;
 public class Service {
     WebDriver driver;
     WebDriverWait webDriverWait;
-
     Random random = new Random();
-
 
     public Service(WebDriver driver) {
         this.driver = driver;
         webDriverWait = new WebDriverWait(driver, 15);
         PageFactory.initElements(driver, this);
     }
-
-    Random randomNumberGen = new Random();
 
     @FindBy(xpath = "/html/body/div[11]/div[2]/button[3]")
     WebElement clickInteriaCookieButton;
@@ -95,7 +90,7 @@ public class Service {
         return sureNameList;
     }
 
-    public ArrayList<String> eMailsDomensList() {
+    public ArrayList<String> eMailsDomenList() {
         ArrayList<String> eMailDomensList = new ArrayList<>();
         eMailDomensList.add("@gmail.com");
         eMailDomensList.add("@interia.com");
@@ -108,43 +103,46 @@ public class Service {
         eMailDomensList.add("@onet.pl");
         eMailDomensList.add("@onet.eu");
         eMailDomensList.add("@tlen.pl");
-        return eMailsDomensList();
+        return eMailDomensList;
+
     }
 
+    public String getRandomValue(ArrayList<String> list) {
 
-
-
-
-    public static String getRandomValue(ArrayList<String> list) {
-        Random rand = new Random();
-        int randomIndex = rand.nextInt(list.size());
+        int randomIndex = random.nextInt(list.size());
         String randomValue = list.get(randomIndex);
         return randomValue;
     }
-    String randomName = getRandomValue(namesList());
-    String randomSurename = getRandomValue(sureNamesList());
-    String randomMailDomen = getRandomValue(eMailsDomensList());
+    public String replacePolishLetters(String nonPolishLetters) {
+        return nonPolishLetters.replace
+                        ("Ą", "A")
+                .replace("ą", "a")
+                .replace("Ć", "C")
+                .replace("Ę", "E")
+                .replace("ę", "e")
+                .replace("Ł", "L")
+                .replace("ł", "l")
+                .replace("Ń", "N")
+                .replace("ń", "n")
+                .replace("Ś", "s")
+                .replace("ś", "s")
+                .replace("Ó", "O")
+                .replace("ó", "o")
+                .replace("Ż", "Z")
+                .replace("ż", "z")
+                .replace("Ź", "z")
+                .replace("ź", "z");
 
-
-
-
-
-    public int returnListSize(ArrayList<String> list) {
-        return list.size();
     }
-    public String returnRandomNameSureNameNumberEmail() {
-        return returnRandomNameSureNameNumberEmail();
-    }
 
-    public String fillContactNameWindow(){
-        return randomName + randomSurename;
-    }
-    public String fillContactMailWindow(){
-        return randomName + randomSurename + randomMailDomen;
-    }
+
 }
 
 
+ //   public String sizeLettersToSmallSize() {
+
+    }
+}
 //ToDo osobne listy dla nazwisk, maili (numery ok) + metoda zwracajaca wielkosc listy z argumentem
 //ToDo w argumencie przekazac liste, wziac wielkosc  listy i wylosowac randomowy numer, na podstawie wylosowanego numeru wybrac wartosc
 

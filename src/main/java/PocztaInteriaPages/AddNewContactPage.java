@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -27,20 +28,17 @@ public class AddNewContactPage extends BasePage {
         contatctButton.click();
         return new MailPage(driver);
     }
-    public void fillContactName() {
+
+    public void fillContactNameWindow(String randomName, String randomSurename) {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(contactNameLabel));
-        contactNameLabel.sendKeys();
+        contactNameLabel.sendKeys(randomName + " "  + randomSurename);
+
     }
-    public MailPage contactNameLabel() {
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(contactNameLabel));
-        contactNameLabel.click();
-        return new MailPage(driver);
-    }
-    public MailPage fillEmailWindow(String chosenName, String sureName, int randomNumber, String eMail) {
+    public void fillContactMailWindow(String randomName, String randomSurename, int randomNumber, String randomMailDomen) {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(emailWindow));
-        emailWindow.sendKeys(chosenName + sureName + randomNumber + "@" + eMail);
-        return new MailPage(driver);
+        emailWindow.sendKeys(randomName+randomSurename+randomNumber+randomMailDomen);
     }
+
 }
 
 

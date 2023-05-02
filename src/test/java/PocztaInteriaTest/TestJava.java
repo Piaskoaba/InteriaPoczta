@@ -1,6 +1,7 @@
 package PocztaInteriaTest;
 
 import PocztaInteriaPages.*;
+import okio.Timeout;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -64,10 +65,11 @@ public class TestJava {
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
         addNewContactPage = mailPage.clickContactBookButton();
         addNewContactPage.contatctButton();
-        addNewContactPage.contactNameLabel();
-        service = addNewContactPage.fillContactName();
 
-
+        addNewContactPage.fillContactNameWindow(service.getRandomValue(service.namesList()), service.getRandomValue(service.sureNamesList()));
+        addNewContactPage.fillContactMailWindow((service.getRandomValue(service.namesList()).toLowerCase()),
+                service.getRandomValue(service.sureNamesList()).toLowerCase(),
+                service.randomNumber(1,9999), service.getRandomValue(service.eMailsDomenList()));
 
 
     }
