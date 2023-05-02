@@ -104,7 +104,6 @@ public class Service {
         eMailDomensList.add("@onet.eu");
         eMailDomensList.add("@tlen.pl");
         return eMailDomensList;
-
     }
 
     public String getRandomValue(ArrayList<String> list) {
@@ -113,6 +112,7 @@ public class Service {
         String randomValue = list.get(randomIndex);
         return randomValue;
     }
+
     public String replacePolishLetters(String nonPolishLetters) {
         return nonPolishLetters.replace
                         ("Ą", "A")
@@ -135,11 +135,14 @@ public class Service {
 
     }
 
+    public String createEmailAddress(String name, String sureName, int number, String mailDomen) {
+        String email = name + sureName + number + mailDomen;
+        return replacePolishLetters(email).toLowerCase();
+    }
+
 
 }
 
-
- //   public String sizeLettersToSmallSize() {
 
 
 

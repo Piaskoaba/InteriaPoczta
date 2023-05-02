@@ -39,9 +39,9 @@ public class AddNewContactPage extends BasePage {
         contactNameLabel.sendKeys(randomName + " " + randomSurename);
 
     }
-    public void fillContactMailWindow(String randomName, String randomSurename, int randomNumber, String randomMailDomen) {
+    public void fillContactMailWindow(String eMail) {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(emailWindow));
-        emailWindow.sendKeys(randomName + randomSurename + randomNumber + randomMailDomen);
+        emailWindow.sendKeys(eMail);
     }
     public boolean isContactCorectlyAddedAllert() {
         try {
