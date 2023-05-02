@@ -141,8 +141,8 @@ public class Service {
 
  //   public String sizeLettersToSmallSize() {
 
-    }
-}
+
+
 //ToDo osobne listy dla nazwisk, maili (numery ok) + metoda zwracajaca wielkosc listy z argumentem
 //ToDo w argumencie przekazac liste, wziac wielkosc  listy i wylosowac randomowy numer, na podstawie wylosowanego numeru wybrac wartosc
 

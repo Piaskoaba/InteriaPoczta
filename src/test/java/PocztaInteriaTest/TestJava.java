@@ -65,11 +65,16 @@ public class TestJava {
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
         addNewContactPage = mailPage.clickContactBookButton();
         addNewContactPage.contatctButton();
-
         addNewContactPage.fillContactNameWindow(service.getRandomValue(service.namesList()), service.getRandomValue(service.sureNamesList()));
-        addNewContactPage.fillContactMailWindow((service.getRandomValue(service.namesList()).toLowerCase()),
+        addNewContactPage.fillContactMailWindow(service.replacePolishLetters(service.getRandomValue(service.namesList()).toLowerCase()),
                 service.getRandomValue(service.sureNamesList()).toLowerCase(),
                 service.randomNumber(1,9999), service.getRandomValue(service.eMailsDomenList()));
+
+        addNewContactPage.saveContactButtonClick();
+
+        Assert.assertTrue(addNewContactPage.isContactCorectlyAddedAllert(), "Contact is not added");  // do dodania po zapisanym kontakcie
+
+
 
 
     }
