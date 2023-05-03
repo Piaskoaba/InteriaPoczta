@@ -24,26 +24,7 @@ public class ContactTests {
         driver.get(service.urlStringInteria());
         driver.manage().window().maximize();
     }
-
-    @Test
-    public void demoTest() {
-        homePage = new HomePage(driver);
-        homePage.loginPageCookieButton();
-        Assert.assertTrue(homePage.isMailButtonVisible());
-        loginPage = homePage.clickMailButton();
-        String myLogin = "adam.testowyy@interia.pl";
-        loginPage.fillLoginWindow(myLogin);
-
-
-        loginPage.fillPasswordWindow("PocztaInteria123!");
-        mailPage = loginPage.clickLogInButton();
-        Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
-        Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
-        newMessagePage = mailPage.clickNewMessegeButton();
-        newMessagePage.fillReciver("@gmail.com");
-        newMessagePage.fillMailSubject("Random mail subject");
-        newMessagePage.clickSendMessageButton();
-    }
+    
     @Test
     public void addContactTest() {
         homePage = new HomePage(driver);

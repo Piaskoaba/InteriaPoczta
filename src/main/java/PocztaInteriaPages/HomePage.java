@@ -11,19 +11,25 @@ public class HomePage extends BasePage {
     public HomePage(WebDriver driver) {
         super(driver);
     }
+
     @FindBy(xpath = "//a[contains(@class, 'mail')]")
     WebElement mailButton;
     @FindBy(xpath = "//button[@class='rodo-popup-agree']")
     WebElement clickTwo;
+    @FindBy(xpath = "/html/body/div[11]/div[2]/button[3]]")
+    WebElement incognitoCookieButton;
+
     public LoginPage clickMailButton() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(mailButton));
         mailButton.click();
         return new LoginPage(driver);
     }
+
     public void loginPageCookieButton() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(clickTwo));
         clickTwo.click();
     }
+
     public boolean isMailButtonVisible() {
         try {
             webDriverWait.until(ExpectedConditions.visibilityOf(mailButton)).isDisplayed();
@@ -32,7 +38,12 @@ public class HomePage extends BasePage {
             return false;
         }
     }
-}
 
+    public void incognitoLoginPageCookieButtonClick() {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(incognitoCookieButton));
+        incognitoCookieButton.click();
+
+    }
+}
 
 
