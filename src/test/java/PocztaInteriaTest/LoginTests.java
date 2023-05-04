@@ -45,7 +45,6 @@ public class LoginTests {
             newMessagePage.clickSendMessageButton();
         }
 
-        //ToDo poprawne zalogowanie is visible ikona maila, avatar
 
 
         // ToDo nieporpawny login/hasło sprawdzenie komunikatu
