@@ -80,6 +80,7 @@ public class ContactTests {
         service.deleteContactClick();
 
     }
+
     @Test
     public void editContactTest() {
         homePage = new HomePage(driver);
@@ -103,14 +104,9 @@ public class ContactTests {
         Assert.assertTrue(addNewContactPage.isContactCorectlyAddedAllert(), "Contact is not added");
         service.xpathForElementToEditOrDelete(email);
         addNewContactPage = service.editContactClick();
-        addNewContactPage.fillContactPhoneNumberWindow(service.cellPhoneNumber(service.randomNumber(600,895))+service.randomNumber(000,999)+service.randomNumber(000,999));
-
-
-
-
-
-
+        addNewContactPage.fillContactPhoneNumberWindow(service.cellPhoneNumber(service.randomNumber(600, 895)) + service.randomNumber(100, 999) + service.randomNumber(100, 999));
+        addNewContactPage.saveEditedContactButtonClick();
 
 
     }
-    }
+}
