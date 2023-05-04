@@ -76,6 +76,9 @@ public class ContactTests {
         addNewContactPage.saveContactButtonClick();
         Assert.assertTrue(addNewContactPage.isContactCorectlyAddedAllert(), "Contact is not added");
         service.xpathForElementToDelete(email);
+        service.contactOptionsClick();
+        service.deleteContactClick();
+
 
 
 

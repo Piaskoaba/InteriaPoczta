@@ -19,16 +19,26 @@ public class Service {
     WebDriver driver;
     WebDriverWait webDriverWait;
     Random random = new Random();
+
     public Service(WebDriver driver) {
         this.driver = driver;
         webDriverWait = new WebDriverWait(driver, 15);
         PageFactory.initElements(driver, this);
     }
+
     @FindBy(xpath = "/html/body/div[11]/div[2]/button[3]")
     WebElement clickInteriaCookieButton;
+
+    @FindBy(xpath = "//*[@id=\"wrapper\"]/div[2]/div/div[2]/div/div[2]/div[1]/div[4]/span[3]/div[1]")
+    WebElement contactOptions;
+
+    @FindBy(xpath = "//*[@id='wrapper']/div[2]/div/div[2]/div/div[2]/div[1]/div[4]/span[3]/div[2]/div/div/ul/li[4]")
+    WebElement deleteContact;
+
     public String chromeDriverUrl() {
         return "webdriver.chrome.driver";
     }
+
     boolean isCookieButtonAbleToClick() {
         try {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(clickInteriaCookieButton)).click();
@@ -37,15 +47,19 @@ public class Service {
             return false;
         }
     }
+
     public String urlStringInteria() {
         return "https://www.interia.pl";
     }
+
     public String getDriver() {
         return "C:/Program Files/DRIVERS/chromedriver.exe";
     }
+
     public int randomNumber(int min, int max) {
         return random.nextInt(max - min + 1) + min;
     }
+
     public ArrayList<String> namesList() {
         ArrayList<String> nameList = new ArrayList<String>();
         nameList.add("Anna");
@@ -60,6 +74,7 @@ public class Service {
         nameList.add("Monika");
         return nameList;
     }
+
     public ArrayList<String> sureNamesList() {
         ArrayList<String> sureNameList = new ArrayList<>();
         sureNameList.add("Antoniak");
@@ -76,6 +91,7 @@ public class Service {
         sureNameList.add("Kownacka");
         return sureNameList;
     }
+
     public ArrayList<String> eMailsDomenList() {
         ArrayList<String> eMailDomensList = new ArrayList<>();
         eMailDomensList.add("@gmail.com");
@@ -91,11 +107,13 @@ public class Service {
         eMailDomensList.add("@tlen.pl");
         return eMailDomensList;
     }
+
     public String getRandomValue(ArrayList<String> list) {
         int randomIndex = random.nextInt(list.size());
         String randomValue = list.get(randomIndex);
         return randomValue;
     }
+
     public String replacePolishLetters(String nonPolishLetters) {
         return nonPolishLetters.replace
                         ("Ą", "A")
@@ -116,22 +134,31 @@ public class Service {
                 .replace("Ź", "z")
                 .replace("ź", "z");
     }
+
     public String createEmailAddress(String name, String sureName, int number, String mailDomen) {
         String email = name + sureName + number + mailDomen;
         return replacePolishLetters(email).toLowerCase();
     }
+
     public void xpathForElementToDelete(String xpathForElement) {
-        WebElement  xpathElementDelete =  driver.findElement(By.xpath("//ul[@class='contact__list']//div[contains(text(),'" + xpathForElement + "')]/../..//span"));
+        WebElement xpathElementDelete = driver.findElement(By.xpath("//ul[@class='contact__list']//div[contains(text(),'" + xpathForElement + "')]/../..//span"));
         xpathElementDelete.click();
     }
-//"//div[contains(text(),'" + xpathForElement + "')/../..//span]"));
-//.//ul[@class="contact__list"]//div[@class="contact__email"]/../..//span
-//        ul[@class="contact__list"]//div[contains(text(),'" + xpathForElement + "')]/../..//span
 
+    public void contactOptionsClick() {
+        webDriverWait.until(ExpectedConditions.visibilityOf(contactOptions));
+        contactOptions.click();
+    }
 
-
-
+    public void deleteContactClick() {
+        webDriverWait.until(ExpectedConditions.visibilityOf(deleteContact));
+        deleteContact.click();
+    }
 }
+
+
+
+
 
 
 //ToDo osobne listy dla nazwisk, maili (numery ok) + metoda zwracajaca wielkosc listy z argumentem
