@@ -1,6 +1,7 @@
 package PocztaInteriaPages;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,42 +30,45 @@ public class AddNewContactPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"wrapper\"]//form/div/div[5]/button[1]")
     WebElement saveContactButton;
 
+    @FindBy(xpath = "//*[@id=\"::listItem.id\"]/div/div/span")
+    WebElement addedContactInfoButton;
+
     public MailPage contatctButton() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(contatctButton));
         contatctButton.click();
         return new MailPage(driver);
     }
+
     public void fillContactNameWindow(String randomName, String randomSurename) {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(contactNameLabel));
         contactNameLabel.sendKeys(randomName + " " + randomSurename);
 
     }
+
     public void fillContactMailWindow(String eMail) {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(emailWindow));
         emailWindow.sendKeys(eMail);
     }
+
     public boolean isContactCorectlyAddedAllert() {
         try {
             return webDriverWait.until(ExpectedConditions.visibilityOf(contactCorrectAddedAllert)).isDisplayed();
         } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
             return false;
         }
-
     }
 
     public void saveContactButtonClick() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(saveContactButton));
         saveContactButton.click();
     }
-
-        public boolean IsSaveContactButtonVisible () {
-            try {
-                return webDriverWait.until(ExpectedConditions.visibilityOf(saveContactButton)).isEnabled();
-            } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
-                return false;
-            }
-        }
     }
+
+
+
+
+
+
 
 
 

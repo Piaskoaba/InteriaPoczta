@@ -1,6 +1,7 @@
 package PocztaInteriaTest;
 
 import PocztaInteriaPages.MailPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,7 +21,6 @@ public class Service {
     Random random = new Random();
 
 
-
     public Service(WebDriver driver) {
         this.driver = driver;
         webDriverWait = new WebDriverWait(driver, 15);
@@ -29,6 +29,8 @@ public class Service {
 
     @FindBy(xpath = "/html/body/div[11]/div[2]/button[3]")
     WebElement clickInteriaCookieButton;
+    @FindBy(xpath = "//*[@id=\"::listItem.id\"]/div/div/span")
+    WebElement addedContactInfoButton;
 
     public void startBrowser(String startUrlBrowser) {
         WebDriver driver = new ChromeDriver();  //
@@ -141,10 +143,14 @@ public class Service {
         String email = name + sureName + number + mailDomen;
         return replacePolishLetters(email).toLowerCase();
     }
-
+public void xpathForElementToDelete( String xpathForElement){
+        driver.findElement(By.xpath("//div[contains(text(),'" + xpathForElement + "')]"));
 
 }
 
+
+
+    }
 
 
 
