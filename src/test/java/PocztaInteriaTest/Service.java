@@ -1,5 +1,6 @@
 package PocztaInteriaTest;
 
+import PocztaInteriaPages.AddNewContactPage;
 import PocztaInteriaPages.MailPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -34,6 +35,9 @@ public class Service {
 
     @FindBy(xpath = "//*[@id='wrapper']/div[2]/div/div[2]/div/div[2]/div[1]/div[4]/span[3]/div[2]/div/div/ul/li[4]")
     WebElement deleteContact;
+
+    @FindBy(xpath = "//*[@id=\"wrapper\"]/div[2]/div/div[2]/div/div[2]/div[1]/div[4]/span[2]")
+    WebElement editContactButton;
 
     public String chromeDriverUrl() {
         return "webdriver.chrome.driver";
@@ -140,7 +144,7 @@ public class Service {
         return replacePolishLetters(email).toLowerCase();
     }
 
-    public void xpathForElementToDelete(String xpathForElement) {
+    public void xpathForElementToEditOrDelete(String xpathForElement) {
         WebElement xpathElementDelete = driver.findElement(By.xpath("//ul[@class='contact__list']//div[contains(text(),'" + xpathForElement + "')]/../..//span"));
         xpathElementDelete.click();
     }
@@ -153,6 +157,12 @@ public class Service {
     public void deleteContactClick() {
         webDriverWait.until(ExpectedConditions.visibilityOf(deleteContact));
         deleteContact.click();
+    }
+
+    public AddNewContactPage editContactClick() {
+        webDriverWait.until(ExpectedConditions.visibilityOf(editContactButton));
+        editContactButton.click();
+        return new AddNewContactPage(driver);
     }
 }
 
