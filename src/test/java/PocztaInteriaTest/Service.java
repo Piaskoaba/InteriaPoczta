@@ -143,6 +143,10 @@ public class Service {
         String email = name + sureName + number + mailDomen;
         return replacePolishLetters(email).toLowerCase();
     }
+    public String cellPhoneNumber(int number){
+        String contactNumber = String.valueOf(number);
+        return contactNumber;
+    }
 
     public void xpathForElementToEditOrDelete(String xpathForElement) {
         WebElement xpathElementDelete = driver.findElement(By.xpath("//ul[@class='contact__list']//div[contains(text(),'" + xpathForElement + "')]/../..//span"));

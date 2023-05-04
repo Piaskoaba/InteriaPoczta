@@ -103,7 +103,7 @@ public class ContactTests {
         Assert.assertTrue(addNewContactPage.isContactCorectlyAddedAllert(), "Contact is not added");
         service.xpathForElementToEditOrDelete(email);
         addNewContactPage = service.editContactClick();
-        //addNewContactPage.fillContactPhoneNumberWindow(email);
+        addNewContactPage.fillContactPhoneNumberWindow(service.cellPhoneNumber(service.randomNumber(600,895))+service.randomNumber(000,999)+service.randomNumber(000,999));
 
 
 

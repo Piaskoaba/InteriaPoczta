@@ -29,9 +29,10 @@ public class AddNewContactPage extends BasePage {
 
     @FindBy(xpath = "//*[@id=\"wrapper\"]//form/div/div[5]/button[1]")
     WebElement saveContactButton;
-    @FindBy(xpath = "//*[@id=\"wrapper\"]/div[2]/div/div[2]/div/div[2]/div[2]/div/form/div/div[3]/div/div/div[2]/label")
+   // @FindBy(xpath = "//*[@id=\"wrapper\"]/div[2]/div/div[2]/div/div[2]/div[2]/div/form/div/div[3]/div/div/div[2]/label")
+   // WebElement phoneNumberField;
+    @FindBy(xpath = "//*[@id=\"phone\"]")
     WebElement phoneNumberField;
-
     public MailPage contatctButton() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(contatctButton));
         contatctButton.click();
@@ -47,6 +48,11 @@ public class AddNewContactPage extends BasePage {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(emailWindow));
         emailWindow.sendKeys(eMail);
     }
+    public void fillContactPhoneNumberWindow(String phoneNumber){
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(phoneNumberField));
+        phoneNumberField.sendKeys(phoneNumber);
+
+    }
     public boolean isContactCorectlyAddedAllert() {
         try {
             return webDriverWait.until(ExpectedConditions.visibilityOf(contactCorrectAddedAllert)).isDisplayed();
@@ -58,10 +64,7 @@ public class AddNewContactPage extends BasePage {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(saveContactButton));
         saveContactButton.click();
     }
-   public void fillContactPhoneNumberWindow(String phoneNumber){
-       webDriverWait.until(ExpectedConditions.visibilityOf(phoneNumberField));
-       phoneNumberField.sendKeys(phoneNumber);
-   }
+
     }
 
 
