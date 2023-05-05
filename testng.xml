@@ -4,7 +4,7 @@
     <test name="Test">
 
         <classes>
-            <class name = "PocztaInteriaTest.MessagesTests">
+            <class name = "PocztaInteriaTest.ContactTests">
 
             </class>
         </classes>

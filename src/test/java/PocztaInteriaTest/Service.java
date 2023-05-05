@@ -1,17 +1,8 @@
 package PocztaInteriaTest;
 
-import PocztaInteriaPages.AddNewContactPage;
-import PocztaInteriaPages.MailPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -27,29 +18,8 @@ public class Service {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "/html/body/div[11]/div[2]/button[3]")
-    WebElement clickInteriaCookieButton;
-
-    @FindBy(xpath = "//*[@id=\"wrapper\"]/div[2]/div/div[2]/div/div[2]/div[1]/div[4]/span[3]/div[1]")
-    WebElement contactOptions;
-
-    @FindBy(xpath = "//*[@id='wrapper']/div[2]/div/div[2]/div/div[2]/div[1]/div[4]/span[3]/div[2]/div/div/ul/li[4]")
-    WebElement deleteContact;
-
-    @FindBy(xpath = "//*[@id=\"wrapper\"]/div[2]/div/div[2]/div/div[2]/div[1]/div[4]/span[2]")
-    WebElement editContactButton;
-
     public String chromeDriverUrl() {
         return "webdriver.chrome.driver";
-    }
-
-    boolean isCookieButtonAbleToClick() {
-        try {
-            webDriverWait.until(ExpectedConditions.elementToBeClickable(clickInteriaCookieButton)).click();
-            return true;
-        } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
     }
 
     public String urlStringInteria() {
@@ -63,7 +33,9 @@ public class Service {
     public int randomNumber(int min, int max) {
         return random.nextInt(max - min + 1) + min;
     }
-
+    public int randomNumber() {
+        return random.nextInt(9999 - 1000 + 1) + 1000;
+    }
     public ArrayList<String> namesList() {
         ArrayList<String> nameList = new ArrayList<String>();
         nameList.add("Anna");
@@ -144,38 +116,12 @@ public class Service {
         return replacePolishLetters(email).toLowerCase();
     }
 
-    public String cellPhoneNumber(int number) {
-        String contactNumber = String.valueOf(number);
+    public String cellPhoneNumber() {
+        String contactNumber = String.valueOf(randomNumber(600, 895) + randomNumber(100, 999) + randomNumber(100, 999));
         return contactNumber;
     }
-
-    public void xpathForElementToEditOrDelete(String xpathForElement) {
-        WebElement xpathElementDelete = driver.findElement(By.xpath("//ul[@class='contact__list']//div[contains(text(),'" + xpathForElement + "')]/../..//span"));
-        xpathElementDelete.click();
-    }
-
-    public void contactOptionsClick() {
-        webDriverWait.until(ExpectedConditions.visibilityOf(contactOptions));
-        contactOptions.click();
-    }
-
-    public void deleteContactClick() {
-        webDriverWait.until(ExpectedConditions.visibilityOf(deleteContact));
-        deleteContact.click();
-    }
-
-    public AddNewContactPage editContactClick() {
-        webDriverWait.until(ExpectedConditions.visibilityOf(editContactButton));
-        editContactButton.click();
-        return new AddNewContactPage(driver);
-    }
-
-
 }
 
-
-//ToDo osobne listy dla nazwisk, maili (numery ok) + metoda zwracajaca wielkosc listy z argumentem
-//ToDo w argumencie przekazac liste, wziac wielkosc  listy i wylosowac randomowy numer, na podstawie wylosowanego numeru wybrac wartosc
 
 
 

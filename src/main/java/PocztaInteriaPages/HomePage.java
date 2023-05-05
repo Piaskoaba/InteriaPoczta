@@ -1,12 +1,10 @@
 package PocztaInteriaPages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 public class HomePage extends BasePage {
     public HomePage(WebDriver driver) {
         super(driver);
@@ -15,7 +13,8 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//a[contains(@class, 'mail')]")
     WebElement mailButton;
     @FindBy(xpath = "//button[@class='rodo-popup-agree']")
-    WebElement clickTwo;
+    WebElement secondCookieButton;
+
     @FindBy(xpath = "/html/body/div[11]/div[2]/button[3]]")
     WebElement incognitoCookieButton;
 
@@ -25,9 +24,9 @@ public class HomePage extends BasePage {
         return new LoginPage(driver);
     }
 
-    public void loginPageCookieButton() {
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(clickTwo));
-        clickTwo.click();
+    public void cookieButtonClick() {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(secondCookieButton));
+        secondCookieButton.click();
     }
 
     public boolean isMailButtonVisible() {
@@ -39,10 +38,9 @@ public class HomePage extends BasePage {
         }
     }
 
-    public void incognitoLoginPageCookieButtonClick() {
+    public void incognitoCookieButtonClick() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(incognitoCookieButton));
         incognitoCookieButton.click();
-
     }
 }
 
