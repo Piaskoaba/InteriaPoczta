@@ -44,11 +44,26 @@ public class LoginTests {
             newMessagePage.fillMailSubject("Random mail subject");
             newMessagePage.clickSendMessageButton();
         }
+// ToDo nieporpawny login/hasło sprawdzenie komunikatu
+
+//ToDo brak loginu i hasla, sprawdzenie na czerwono czy wyswietla
 
 
 
-        // ToDo nieporpawny login/hasło sprawdzenie komunikatu
+@Test
+public void wrongPasswordTest () {
+
+    homePage = new HomePage(driver);
+    homePage.loginPageCookieButton();
+    Assert.assertTrue(homePage.isMailButtonVisible());
+    loginPage = homePage.clickMailButton();
+    String myLogin = "adam.testowyy@interia.pl";
+    loginPage.fillLoginWindow(myLogin);
+    loginPage.fillPasswordWindow("PocztaInteria1234!");
+    mailPage = loginPage.clickLogInButton();
+    Assert.assertTrue(loginPage.passwordIsNotCorrect());
 
 
-        //ToDo brak loginu i hasla, sprawdzenie na czerwono czy wyswietla
-    }
+}
+
+}
