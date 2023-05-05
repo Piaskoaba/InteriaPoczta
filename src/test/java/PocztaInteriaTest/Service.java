@@ -143,7 +143,8 @@ public class Service {
         String email = name + sureName + number + mailDomen;
         return replacePolishLetters(email).toLowerCase();
     }
-    public String cellPhoneNumber(int number){
+
+    public String cellPhoneNumber(int number) {
         String contactNumber = String.valueOf(number);
         return contactNumber;
     }
@@ -168,11 +169,9 @@ public class Service {
         editContactButton.click();
         return new AddNewContactPage(driver);
     }
+
+
 }
-
-
-
-
 
 
 //ToDo osobne listy dla nazwisk, maili (numery ok) + metoda zwracajaca wielkosc listy z argumentem

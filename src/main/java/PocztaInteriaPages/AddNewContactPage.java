@@ -74,6 +74,8 @@ public class AddNewContactPage extends BasePage {
         webDriverWait.until((ExpectedConditions.elementToBeClickable(saveEditedContactButton)));
         saveEditedContactButton.click();
     }
+
+
 }
 
 

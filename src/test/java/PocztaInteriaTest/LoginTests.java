@@ -26,44 +26,77 @@ public class LoginTests {
         driver.manage().window().maximize();
     }
 
-        @Test
-        public void demoTest () {
+    @Test
+    public void demoTest() {
 
-            homePage = new HomePage(driver);
-            homePage.loginPageCookieButton();
-            Assert.assertTrue(homePage.isMailButtonVisible());
-            loginPage = homePage.clickMailButton();
-            String myLogin = "adam.testowyy@interia.pl";
-            loginPage.fillLoginWindow(myLogin);
-            loginPage.fillPasswordWindow("PocztaInteria123!");
-            mailPage = loginPage.clickLogInButton();
-            Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
-            Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
-            newMessagePage = mailPage.clickNewMessegeButton();
-            newMessagePage.fillReciver("@gmail.com");
-            newMessagePage.fillMailSubject("Random mail subject");
-            newMessagePage.clickSendMessageButton();
-        }
+        homePage = new HomePage(driver);
+        homePage.loginPageCookieButton();
+        Assert.assertTrue(homePage.isMailButtonVisible());
+        loginPage = homePage.clickMailButton();
+        String myLogin = "adam.testowyy@interia.pl";
+        String password = "PocztaInteria123!";
+        loginPage.fillLoginWindow(myLogin);
+        loginPage.fillPasswordWindow(password);
+        mailPage = loginPage.clickLogInButton();
+        Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
+        Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
+        newMessagePage = mailPage.clickNewMessegeButton();
+        newMessagePage.fillReciver("@gmail.com");
+        newMessagePage.fillMailSubject("Random mail subject");
+        newMessagePage.clickSendMessageButton();
+    }
 // ToDo nieporpawny login/hasło sprawdzenie komunikatu
 
 //ToDo brak loginu i hasla, sprawdzenie na czerwono czy wyswietla
 
 
+    @Test
+    public void wrongPasswordTest() {
 
-@Test
-public void wrongPasswordTest () {
+        homePage = new HomePage(driver);
+        homePage.loginPageCookieButton();
+        Assert.assertTrue(homePage.isMailButtonVisible());
+        loginPage = homePage.clickMailButton();
+        String myLogin = "adam.testowyy@interia.pl";
+        String wrongPassword = "xyzpass";
+        loginPage.fillLoginWindow(myLogin);
+        loginPage.fillWrongPasswordWindow(wrongPassword);
+        mailPage = loginPage.clickLogInButton();
+        Assert.assertTrue(loginPage.passwordIsNotCorrect());
+        Assert.assertTrue(loginPage.isEmailTextVisible());
+        Assert.assertFalse(mailPage.isAvatarVisible());
 
-    homePage = new HomePage(driver);
-    homePage.loginPageCookieButton();
-    Assert.assertTrue(homePage.isMailButtonVisible());
-    loginPage = homePage.clickMailButton();
-    String myLogin = "adam.testowyy@interia.pl";
-    loginPage.fillLoginWindow(myLogin);
-    loginPage.fillPasswordWindow("PocztaInteria1234!");
-    mailPage = loginPage.clickLogInButton();
-    Assert.assertTrue(loginPage.passwordIsNotCorrect());
+    }
 
+    @Test
+    public void wrongLoginTest() {
 
-}
+        homePage = new HomePage(driver);
+        homePage.loginPageCookieButton();
+        Assert.assertTrue(homePage.isMailButtonVisible());
+        loginPage = homePage.clickMailButton();
+        String myWrongLogin = "adamteestowyy@interia.pl";
+        String myPassword = "PocztaInteria123!";
+        loginPage.fillLoginWindow(myWrongLogin);
+        loginPage.fillPasswordWindow(myPassword);
+        mailPage = loginPage.clickLogInButton();
+        Assert.assertTrue(loginPage.loginIsNotCorrect());
+        Assert.assertTrue(loginPage.isEmailTextVisible());
+        Assert.assertFalse(mailPage.isAvatarVisible());
+        Assert.assertTrue(loginPage.isLoginButtonVisible());
+    }
 
+    @Test
+    public void emptyWindowsLoginTest() {
+
+        homePage = new HomePage(driver);
+        homePage.loginPageCookieButton();
+        Assert.assertTrue(homePage.isMailButtonVisible());
+        loginPage = homePage.clickMailButton();
+        mailPage = loginPage.clickLogInButton();
+        Assert.assertTrue(loginPage.isEmailTextVisible());
+        Assert.assertFalse(mailPage.isAvatarVisible());
+        Assert.assertTrue(loginPage.isLoginButtonVisible());
+
+    }
 }
