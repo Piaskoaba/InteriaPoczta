@@ -12,12 +12,16 @@ public class LoginPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='email']")
     WebElement loginWindow;
+
     @FindBy(id = "password")
     WebElement passwordWindow;
+
     @FindBy(xpath = "//*[@id='sitebar']/form/button")
     WebElement logInButton;
+
     @FindBy(xpath = "//*[@id='sitebar']//span[contains(text(),'Błędny e-mail lub hasło')]")
     WebElement wrongPasswordOrLoginAlert;
+
     @FindBy(xpath = "//*[@id='sitebar']/form/div[1]/div[1]/label")
     WebElement eMailTextUnderLoginWindowIsVisible;
 
@@ -72,6 +76,7 @@ public class LoginPage extends BasePage {
         String text = loginWindow.getText();
         return text;
     }
+
     public String getTextFromPasswordWindow() {
         webDriverWait.until(ExpectedConditions.visibilityOf(passwordWindow));
         String text = passwordWindow.getText();

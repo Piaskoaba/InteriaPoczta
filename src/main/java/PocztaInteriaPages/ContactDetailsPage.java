@@ -15,8 +15,10 @@ public class ContactDetailsPage extends BasePage {
 
     @FindBy(xpath = "//*[@id=\"wrapper\"]/div[2]/div/div[2]/div/div[2]/div[1]/div[4]/span[2]")
     WebElement editContactButton;
+
     @FindBy(xpath = "//*[@id=\"wrapper\"]/div[3]/div/ul/li/div[2]")
     WebElement contactDeleted;
+
     @FindBy(xpath = "//*[@id=\"wrapper\"]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/ul/li/span[2]")
     WebElement addedContactNumber;
 
@@ -49,6 +51,7 @@ public class ContactDetailsPage extends BasePage {
             return false;
         }
     }
+
       public String getPhoneNumberFromContactDetailsWindow() {
           webDriverWait.until(ExpectedConditions.visibilityOf(addedContactNumber));
           String text = addedContactNumber.getText().replace(" ","");

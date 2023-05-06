@@ -33,6 +33,7 @@ public class LoginIncognitoModeTests {
         driver.get(service.urlStringInteria());
         driver.manage().window().maximize();
     }
+
     @Test(priority = 1, groups = {"all","critical"})
     public void loginIncognitoMode() {
         homePage = new HomePage(driver);
@@ -46,10 +47,12 @@ public class LoginIncognitoModeTests {
         Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not visible");
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
     }
+
     @AfterTest(alwaysRun = true)
     public void afterTest(){
         driver.quit();
     }
+
     @AfterMethod(alwaysRun = true)
     public void afterMethod(){
         driver.close();

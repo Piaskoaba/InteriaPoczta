@@ -12,6 +12,7 @@ public class HomePage extends BasePage {
 
     @FindBy(xpath = "//a[contains(@class, 'mail')]")
     WebElement mailButton;
+
     @FindBy(xpath = "//button[@class='rodo-popup-agree']")
     WebElement secondCookieButton;
 

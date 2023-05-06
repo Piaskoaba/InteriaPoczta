@@ -29,7 +29,6 @@ public class LoginTests {
 
     @Test(priority = 1, groups = {"all","critical"})
     public void correctLogin () {
-
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
         Assert.assertTrue(homePage.isMailButtonVisible());
@@ -45,7 +44,6 @@ public class LoginTests {
     }
     @Test(priority = 2, groups = {"all","low"})
     public void wrongPassword() {
-
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
         Assert.assertTrue(homePage.isMailButtonVisible());
@@ -59,6 +57,7 @@ public class LoginTests {
         Assert.assertFalse(mailPage.isAvatarVisible(),"Avatar is not Visible");
 
     }
+
     @Test(priority = 3, groups = {"all","high"})
     public void wrongLoginOrPassword() {
         homePage = new HomePage(driver);
@@ -83,6 +82,7 @@ public class LoginTests {
         Assert.assertFalse(loginPage.isEmailTextUnderLoginWindowVisible(),"Email is visble");
         Assert.assertFalse(mailPage.isAvatarVisible(),"Avatar is visible");
     }
+
     @Test(priority = 4, groups = {"all","low"})
     public void emptyWindowsLogin() {
         homePage = new HomePage(driver);
@@ -95,13 +95,13 @@ public class LoginTests {
         Assert.assertTrue(loginPage.isLoginButtonVisible(),"Login button is not visible");
         Assert.assertEquals(loginPage.getTextFromLoginWindow(),"");
         Assert.assertEquals(loginPage.getTextFromPasswordWindow(),"");
-
-
     }
+
     @AfterTest(alwaysRun = true)
     public void afterTest(){
         driver.quit();
     }
+
     @AfterMethod(alwaysRun = true)
         public void afterMethod(){
             driver.close();

@@ -33,9 +33,11 @@ public class Service {
     public int randomNumber(int min, int max) {
         return random.nextInt(max - min + 1) + min;
     }
+
     public int randomNumber() {
         return random.nextInt(9999 - 1000 + 1) + 1000;
     }
+    
     public ArrayList<String> namesList() {
         ArrayList<String> nameList = new ArrayList<String>();
         nameList.add("Anna");

@@ -13,16 +13,22 @@ public class MailPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='wrapper']//section[contains(@class,'section--sidebar')]/div/div[contains(@class,'sidebar__main-panel')]/div[1]/div[2]/div/div")
     WebElement avatar;
+
     @FindBy(xpath = "//*[@id=\"wrapper\"]//span[@class=\"icon icon-inbox\"]")
     WebElement receivedButton;
+
     @FindBy(xpath = "//*[@id=\"wrapper\"]/section[4]/div/div[1]/div[2]")
     WebElement contactBook;
+
     @FindBy(xpath = "//*[@id=\"wrapper\"]/div[3]/div/ul/li/div[2]")
     WebElement contactCorrectAddedAlert;
+
     @FindBy(xpath = "/html/body/div[2]/section[4]/div/div[2]/div[1]/div/span[1]")
     WebElement contactButton;
+
     @FindBy(xpath = "//*[@id=\"wrapper\"]/div[3]/div/ul/li/div[2]")
     WebElement contactEdidetCorrectAlert;
+
     public boolean isAvatarVisible() {
         try {
             return webDriverWait.until(ExpectedConditions.visibilityOf(avatar)).isDisplayed();
@@ -43,8 +49,8 @@ public class MailPage extends BasePage {
     public void contactBookButtonClick() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(contactBook));
         contactBook.click();
-
     }
+
     public ContactDetailsPage contactByMailAddressClick(String eMailAddress) throws InterruptedException {
         Thread.sleep(2000);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(contactButton));
@@ -53,6 +59,7 @@ public class MailPage extends BasePage {
         element.click();
         return new ContactDetailsPage(driver);
     }
+
     public boolean isContactCorrectlyAddedAlert() {
         try {
             return webDriverWait.until(ExpectedConditions.visibilityOf(contactCorrectAddedAlert)).isDisplayed();
@@ -60,11 +67,13 @@ public class MailPage extends BasePage {
             return false;
         }
     }
+
     public AddNewContactPage contactButtonClick() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(contactButton));
         contactButton.click();
         return new AddNewContactPage(driver);
     }
+
     public boolean isEditedContactCorrectlySaved() {
         try {
             webDriverWait.until(ExpectedConditions.visibilityOf(contactEdidetCorrectAlert)).isDisplayed();

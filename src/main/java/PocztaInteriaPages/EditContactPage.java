@@ -9,8 +9,10 @@ public class EditContactPage extends BasePage {
     public EditContactPage(WebDriver driver) {
         super(driver);
     }
+
     @FindBy(xpath = "//*[@id=\"phone\"]")
     WebElement phoneNumberField;
+
     @FindBy(xpath = "//*[@id=\"wrapper\"]/div[2]/div/div[2]/div/div[2]/div[2]/div/form/div/div[5]/button[1]")
     WebElement saveEditedContactButton;
 
@@ -18,6 +20,7 @@ public class EditContactPage extends BasePage {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(phoneNumberField));
         phoneNumberField.sendKeys(phoneNumber);
     }
+
     public MailPage saveEditedContactButtonClick() {
         webDriverWait.until((ExpectedConditions.elementToBeClickable(saveEditedContactButton)));
         saveEditedContactButton.click();
