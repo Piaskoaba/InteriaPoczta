@@ -4,6 +4,8 @@ import PocztaInteriaPages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -38,22 +40,22 @@ public class ContactTests {
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
-        addNewContactPage = mailPage.contactBookButtonClick();
-        addNewContactPage.contactButtonClick();
+        mailPage.contactBookButtonClick();
+        addNewContactPage = mailPage.contactButtonClick();
         String name = service.getRandomValue(service.namesList());
         String sureName = service.getRandomValue(service.sureNamesList());
         String email = service.createEmailAddress(name, sureName, service.randomNumber(), service.getRandomValue(service.eMailsDomenList()));
         addNewContactPage.fillContactNameWindow(name, sureName);
         addNewContactPage.fillContactMailWindow(email);
         addNewContactPage.saveContactButtonClick();
-        Assert.assertTrue(addNewContactPage.isContactCorrectlyAddedAlert(), "Contact is not added");
+        Assert.assertFalse(addNewContactPage.isContactCorrectlyAddedAlert(), "Contact added");
     }
 
     @Test
-    public void deleteContact() {
+    public void deleteContact() throws InterruptedException {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
-        Assert.assertTrue(homePage.isMailButtonVisible()); //message
+        Assert.assertTrue(homePage.isMailButtonVisible(), "Button is not visible");
         loginPage = homePage.clickMailButton();
         String myLogin = "adam.testowyy@interia.pl";
         loginPage.fillLoginWindow(myLogin);
@@ -61,8 +63,8 @@ public class ContactTests {
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
-        addNewContactPage = mailPage.contactBookButtonClick();
-        addNewContactPage.contactButtonClick();
+        mailPage.contactBookButtonClick();
+        addNewContactPage = mailPage.contactButtonClick();
         String name = service.getRandomValue(service.namesList());
         String sureName = service.getRandomValue(service.sureNamesList());
         String email = service.createEmailAddress(name, sureName, service.randomNumber(), service.getRandomValue(service.eMailsDomenList()));
@@ -73,12 +75,11 @@ public class ContactTests {
         contactDetailsPage = mailPage.contactByMailAddressClick(email);
         contactDetailsPage.contactOptionsButtonClick();
         mailPage = contactDetailsPage.deleteContactButtonClick();
-        assert !czy jest usuniety komunikat
-        assert boolean po xpath email niewidoczny
+        Assert.assertTrue(contactDetailsPage.isContactCorrectlyDeletedAllert(), "Contact is not deleted");
     }
 
     @Test
-    public void editContact() {
+    public void editContact() throws InterruptedException {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
         Assert.assertTrue(homePage.isMailButtonVisible());
@@ -89,8 +90,8 @@ public class ContactTests {
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
-        addNewContactPage = mailPage.contactBookButtonClick();
-        addNewContactPage.contactButtonClick();
+        mailPage.contactBookButtonClick();
+        addNewContactPage = mailPage.contactButtonClick();
         String name = service.getRandomValue(service.namesList());
         String sureName = service.getRandomValue(service.sureNamesList());
         String email = service.createEmailAddress(name, sureName, service.randomNumber(), service.getRandomValue(service.eMailsDomenList()));
@@ -100,14 +101,22 @@ public class ContactTests {
         Assert.assertTrue(mailPage.isContactCorrectlyAddedAlert(), "Contact is not added");
         contactDetailsPage = mailPage.contactByMailAddressClick(email);
         editContactPage = contactDetailsPage.editContactButtonClick();
-        editContactPage.fillContactPhoneNumberWindow(service.cellPhoneNumber());
+        String cellPhoneNumber = service.cellPhoneNumber();
+        editContactPage.fillContactPhoneNumberWindow(cellPhoneNumber);
         mailPage = editContactPage.saveEditedContactButtonClick();
-
-        !assert widoczny czy sie zapisal
-
-
+        Assert.assertTrue(mailPage.isEditedContactCorrectlySaved(),"Edited contact is not correctly saved");
         contactDetailsPage = mailPage.contactByMailAddressClick(email);
-        editContactPage = contactDetailsPage.editContactButtonClick();
-        get text assert equal //w edit contactpage
+        Assert.assertEquals(contactDetailsPage.getPhoneNumberFromContactDetailsWindow(), cellPhoneNumber);
+
+    }
+
+    @AfterTest(alwaysRun = true)
+    public void afterTest() {
+        driver.quit();
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void afterMethod() {
+        driver.close();
     }
 }

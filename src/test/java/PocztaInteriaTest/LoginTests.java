@@ -55,30 +55,31 @@ public class LoginTests {
         loginPage.fillLoginWindow(myLogin);
         loginPage.fillPasswordWindow(wrongPassword);
         mailPage = loginPage.clickLogInButton();
-        Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible());
-        Assert.assertFalse(mailPage.isAvatarVisible());
+        Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible(),"Text under login window is not visible");
+        Assert.assertFalse(mailPage.isAvatarVisible(),"Avatar is not Visible");
+
     }
     @Test
     public void wrongLoginOrPassword() {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
-        Assert.assertTrue(homePage.isMailButtonVisible());
+        Assert.assertTrue(homePage.isMailButtonVisible(),"Mail button is not visible");
         loginPage = homePage.clickMailButton();
         String wrongLogin = "adamteestowyy@interia.pl";
         String password = "PocztaInteria123!";
         loginPage.fillLoginWindow(wrongLogin);
         loginPage.fillPasswordWindow(password);
         mailPage = loginPage.clickLogInButton();
-        Assert.assertTrue(loginPage.isIncorrectLoginOrPasswordVisible());
-        Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible());
-        Assert.assertTrue(loginPage.isLoginButtonVisible());
-        Assert.assertFalse(mailPage.isAvatarVisible());
+        Assert.assertTrue(loginPage.isIncorrectLoginOrPasswordVisible(),"Password or login is not correct");
+        Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible(),"Text under login window is not visible");
+        Assert.assertTrue(loginPage.isLoginButtonVisible(),"Login button is not visible");
+        Assert.assertFalse(mailPage.isAvatarVisible(),"Avatar is not Visible");
         String login = "adam.testowyy@interia.pl";
         String wrongPassword = "xyzpass";
         loginPage.fillLoginWindow(login);
         loginPage.fillPasswordWindow(wrongPassword);
         mailPage = loginPage.clickLogInButton();
-        Assert.assertTrue(loginPage.isIncorrectLoginOrPasswordVisible());
+        Assert.assertTrue(loginPage.isIncorrectLoginOrPasswordVisible(),"Password or login is not correct");
         Assert.assertFalse(loginPage.isEmailTextUnderLoginWindowVisible(),"Email is visble");
         Assert.assertFalse(mailPage.isAvatarVisible(),"Avatar is visible");
     }
@@ -89,11 +90,12 @@ public class LoginTests {
         Assert.assertTrue(homePage.isMailButtonVisible());
         loginPage = homePage.clickMailButton();
         mailPage = loginPage.clickLogInButton();
-        Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible());
-        Assert.assertFalse(mailPage.isAvatarVisible());
-        Assert.assertTrue(loginPage.isLoginButtonVisible());
+        Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible(),"Text under login window is not visible");
+        Assert.assertTrue(mailPage.isAvatarVisible(),"Avatar is not Visible");
+        Assert.assertTrue(loginPage.isLoginButtonVisible(),"Login button is not visible");
         Assert.assertEquals(loginPage.getTextFromLoginWindow(),"");
-              to smao do textu  assert equals do gettext
+        Assert.assertEquals(loginPage.getTextFromPasswordWindow(),"");
+
 
     }
     @AfterTest(alwaysRun = true)

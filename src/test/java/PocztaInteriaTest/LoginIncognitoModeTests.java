@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -35,14 +37,22 @@ public class LoginIncognitoModeTests {
     public void loginIncognitoMode() {
         homePage = new HomePage(driver);
         homePage.incognitoCookieButtonClick();
-        Assert.assertTrue(homePage.isMailButtonVisible());
+        Assert.assertTrue(homePage.isMailButtonVisible(), "Button ins not visible");
         loginPage = homePage.clickMailButton();
         String myLogin = "adam.testowyy@interia.pl";
         loginPage.fillLoginWindow(myLogin);
         loginPage.fillPasswordWindow("PocztaInteria123!");
         mailPage = loginPage.clickLogInButton();
-        Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
+        Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not visible");
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
+    }
+    @AfterTest(alwaysRun = true)
+    public void afterTest(){
+        driver.quit();
+    }
+    @AfterMethod(alwaysRun = true)
+    public void afterMethod(){
+        driver.close();
     }
 }
 

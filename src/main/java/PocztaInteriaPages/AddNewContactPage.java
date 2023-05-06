@@ -14,15 +14,13 @@ public class AddNewContactPage extends BasePage {
     WebElement contactNameLabel;
     @FindBy(xpath = "//*[@id=\"email\"]")
     WebElement emailWindow;
-    @FindBy(xpath = "/html/body/div[2]/section[4]/div/div[2]/div[1]/div/span[1]")
-    WebElement contactButton;
+
     @FindBy(xpath = "//*[@id=\"wrapper\"]//form/div/div[5]/button[1]")
     WebElement saveContactButton;
-    public MailPage contactButtonClick() {
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(contactButton));
-        contactButton.click();
-        return new MailPage(driver);
-    }
+    @FindBy(xpath = "//*[@id='wrapper']/div[3]/div/ul/li[2]/div[2]")
+
+    WebElement contactCorrectlyAdded;
+
 
     public void fillContactNameWindow(String randomName, String randomSurename) {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(contactNameLabel));
@@ -39,7 +37,14 @@ public class AddNewContactPage extends BasePage {
         saveContactButton.click();
         return new MailPage(driver);
     }
-
+    public boolean isContactCorrectlyAddedAlert() {
+        try {
+            webDriverWait.until(ExpectedConditions.visibilityOf(contactCorrectlyAdded)).isDisplayed();
+            return true;
+        } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
+    }
 
 
 }

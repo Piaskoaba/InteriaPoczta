@@ -13,7 +13,7 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//*[@id='email']")
     WebElement loginWindow;
     @FindBy(id = "password")
-    WebElement passWindow;
+    WebElement passwordWindow;
     @FindBy(xpath = "//*[@id='sitebar']/form/button")
     WebElement logInButton;
     @FindBy(xpath = "//*[@id='sitebar']//span[contains(text(),'Błędny e-mail lub hasło')]")
@@ -29,9 +29,9 @@ public class LoginPage extends BasePage {
     }
 
     public void fillPasswordWindow(String mailPassword) {
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(passWindow));
-        passWindow.clear();
-        passWindow.sendKeys(mailPassword);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(passwordWindow));
+        passwordWindow.clear();
+        passwordWindow.sendKeys(mailPassword);
     }
 
     public MailPage clickLogInButton() {
@@ -71,8 +71,11 @@ public class LoginPage extends BasePage {
         webDriverWait.until(ExpectedConditions.visibilityOf(loginWindow));
         String text = loginWindow.getText();
         return text;
-
-
+    }
+    public String getTextFromPasswordWindow() {
+        webDriverWait.until(ExpectedConditions.visibilityOf(passwordWindow));
+        String text = passwordWindow.getText();
+        return text;
     }
 }
 

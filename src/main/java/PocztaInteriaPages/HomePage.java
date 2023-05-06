@@ -15,7 +15,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//button[@class='rodo-popup-agree']")
     WebElement secondCookieButton;
 
-    @FindBy(xpath = "/html/body/div[11]/div[2]/button[3]]")
+    @FindBy(xpath = "//div[@class=\"rodo-popup\"]//div[@class=\"rodo-popup-buttons\"]//*[@class='rodo-popup-agree']")
     WebElement incognitoCookieButton;
 
     public LoginPage clickMailButton() {

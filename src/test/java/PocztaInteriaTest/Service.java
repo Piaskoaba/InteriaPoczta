@@ -117,7 +117,8 @@ public class Service {
     }
 
     public String cellPhoneNumber() {
-        String contactNumber = String.valueOf(randomNumber(600, 895) + randomNumber(100, 999) + randomNumber(100, 999));
+        String contactNumber = String.valueOf(randomNumber(600, 895)) + String.valueOf(randomNumber(100, 999)) + String.valueOf(randomNumber(100, 999));
+        System.out.println(contactNumber);
         return contactNumber;
     }
 }

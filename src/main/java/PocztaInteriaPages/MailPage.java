@@ -19,7 +19,10 @@ public class MailPage extends BasePage {
     WebElement contactBook;
     @FindBy(xpath = "//*[@id=\"wrapper\"]/div[3]/div/ul/li/div[2]")
     WebElement contactCorrectAddedAlert;
-
+    @FindBy(xpath = "/html/body/div[2]/section[4]/div/div[2]/div[1]/div/span[1]")
+    WebElement contactButton;
+    @FindBy(xpath = "//*[@id=\"wrapper\"]/div[3]/div/ul/li/div[2]")
+    WebElement contactEdidetCorrectAlert;
     public boolean isAvatarVisible() {
         try {
             return webDriverWait.until(ExpectedConditions.visibilityOf(avatar)).isDisplayed();
@@ -37,13 +40,16 @@ public class MailPage extends BasePage {
         }
     }
 
-    public AddNewContactPage contactBookButtonClick() {
+    public void contactBookButtonClick() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(contactBook));
         contactBook.click();
-        return new AddNewContactPage(driver);
+
     }
-    public ContactDetailsPage contactByMailAddressClick(String eMailAddress) {
+    public ContactDetailsPage contactByMailAddressClick(String eMailAddress) throws InterruptedException {
+        Thread.sleep(2000);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(contactButton));
         WebElement element = driver.findElement(By.xpath("//ul[@class='contact__list']//div[contains(text(),'" + eMailAddress + "')]/../..//span"));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
         return new ContactDetailsPage(driver);
     }
@@ -54,7 +60,19 @@ public class MailPage extends BasePage {
             return false;
         }
     }
-
+    public AddNewContactPage contactButtonClick() {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(contactButton));
+        contactButton.click();
+        return new AddNewContactPage(driver);
+    }
+    public boolean isEditedContactCorrectlySaved() {
+        try {
+            webDriverWait.until(ExpectedConditions.visibilityOf(contactEdidetCorrectAlert)).isDisplayed();
+            return true;
+        } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
+    }
 }
 
 
