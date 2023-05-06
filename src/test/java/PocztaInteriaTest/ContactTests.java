@@ -28,7 +28,7 @@ public class ContactTests {
         driver.manage().window().maximize();
     }
 
-    @Test
+    @Test(priority = 1, groups = {"all","critical"})
     public void addContact() {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
@@ -51,7 +51,7 @@ public class ContactTests {
         Assert.assertFalse(addNewContactPage.isContactCorrectlyAddedAlert(), "Contact added");
     }
 
-    @Test
+    @Test(priority = 2, groups = {"all","high"})
     public void deleteContact() throws InterruptedException {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
@@ -78,7 +78,7 @@ public class ContactTests {
         Assert.assertTrue(contactDetailsPage.isContactCorrectlyDeletedAllert(), "Contact is not deleted");
     }
 
-    @Test
+    @Test(priority = 3, groups = {"all","low"})
     public void editContact() throws InterruptedException {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();

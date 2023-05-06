@@ -27,7 +27,7 @@ public class LoginTests {
         driver.manage().window().maximize();
     }
 
-    @Test
+    @Test(priority = 1, groups = {"all","critical"})
     public void correctLogin () {
 
         homePage = new HomePage(driver);
@@ -43,7 +43,7 @@ public class LoginTests {
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
 
     }
-    @Test
+    @Test(priority = 2, groups = {"all","low"})
     public void wrongPassword() {
 
         homePage = new HomePage(driver);
@@ -59,7 +59,7 @@ public class LoginTests {
         Assert.assertFalse(mailPage.isAvatarVisible(),"Avatar is not Visible");
 
     }
-    @Test
+    @Test(priority = 3, groups = {"all","high"})
     public void wrongLoginOrPassword() {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
@@ -83,7 +83,7 @@ public class LoginTests {
         Assert.assertFalse(loginPage.isEmailTextUnderLoginWindowVisible(),"Email is visble");
         Assert.assertFalse(mailPage.isAvatarVisible(),"Avatar is visible");
     }
-    @Test
+    @Test(priority = 4, groups = {"all","low"})
     public void emptyWindowsLogin() {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
@@ -91,7 +91,7 @@ public class LoginTests {
         loginPage = homePage.clickMailButton();
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible(),"Text under login window is not visible");
-        Assert.assertTrue(mailPage.isAvatarVisible(),"Avatar is not Visible");
+        Assert.assertFalse(mailPage.isAvatarVisible(),"Avatar is Visible");
         Assert.assertTrue(loginPage.isLoginButtonVisible(),"Login button is not visible");
         Assert.assertEquals(loginPage.getTextFromLoginWindow(),"");
         Assert.assertEquals(loginPage.getTextFromPasswordWindow(),"");

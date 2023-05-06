@@ -33,7 +33,7 @@ public class LoginIncognitoModeTests {
         driver.get(service.urlStringInteria());
         driver.manage().window().maximize();
     }
-    @Test
+    @Test(priority = 1, groups = {"all","critical"})
     public void loginIncognitoMode() {
         homePage = new HomePage(driver);
         homePage.incognitoCookieButtonClick();
