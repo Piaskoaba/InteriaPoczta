@@ -10,16 +10,16 @@ public class AddNewContactPage extends BasePage {
     public AddNewContactPage(WebDriver driver) {
         super(driver);
     }
-    @FindBy(xpath = "//*[@id=\"name\"]")
+    @FindBy(xpath = "//*[@id='name']")
     WebElement contactNameLabel;
 
-    @FindBy(xpath = "//*[@id=\"email\"]")
+    @FindBy(xpath = "//*[@id='email']")
     WebElement emailWindow;
 
-    @FindBy(xpath = "//*[@id=\"wrapper\"]//form/div/div[5]/button[1]")
+    @FindBy(xpath = "//div[@class='dialog__buttons-container']/button[@type='submit']")
     WebElement saveContactButton;
 
-    @FindBy(xpath = "//*[@id='wrapper']/div[3]/div/ul/li[2]/div[2]")
+    @FindBy(xpath = "//div[@class='notification-container']")
     WebElement contactCorrectlyAdded;
 
 

@@ -48,7 +48,7 @@ public class ContactTests {
         addNewContactPage.fillContactNameWindow(name, sureName);
         addNewContactPage.fillContactMailWindow(email);
         addNewContactPage.saveContactButtonClick();
-        Assert.assertFalse(addNewContactPage.isContactCorrectlyAddedAlert(), "Contact added");
+        Assert.assertTrue(addNewContactPage.isContactCorrectlyAddedAlert(), "Contact not added");
     }
 
     @Test(priority = 2, groups = {"all","high"})

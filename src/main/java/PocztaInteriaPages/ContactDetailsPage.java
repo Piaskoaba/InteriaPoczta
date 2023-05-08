@@ -7,19 +7,19 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ContactDetailsPage extends BasePage {
 
-    @FindBy(xpath = "//div[@class=\"dialog__scroll\"]//div[@class='dropdown__icon icon icon-dots']")
+    @FindBy(xpath = "//div[@class='dialog__scroll']//div[@class='dropdown__icon icon icon-dots']")
     WebElement contactOptionsButton;
 
-    @FindBy(xpath = "//*[@class='dialog__scroll']//*[@class='dropdown__list']//*[contains(text(),'Usuń')]")
+    @FindBy(xpath = "//div[@class='dialog__scroll']//div[@class='dropdown__scroll']//li[@ng-click='deleteContact()']")
     WebElement deleteContactButton;
 
-    @FindBy(xpath = "//div[@class=\"dialog__scroll__header\"]//span[2]")
+    @FindBy(xpath = "//div[@class='dialog__scroll__header']//span[@data-tooltip='Edytuj']")
     WebElement editContactButton;
 
     @FindBy(xpath = "//div[@class='notification__message']")
     WebElement contactDeletedAlert;
 
-    @FindBy(xpath = "//*[@id=\"wrapper\"]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/ul/li/span[2]")
+    @FindBy(xpath = "//div[@class='contact-details__sections']//span[@ng-bind='::phone.value | number']")
     WebElement addedContactNumber;
 
     public ContactDetailsPage(WebDriver driver) {

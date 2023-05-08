@@ -22,7 +22,7 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//*[@id='sitebar']//span[contains(text(),'Błędny e-mail lub hasło')]")
     WebElement wrongPasswordOrLoginAlert;
 
-    @FindBy(xpath = "//*[@id='sitebar']/form/div[1]/div[1]/label")
+    @FindBy(xpath = "//form[@class='login-form']//label[@class='account-input__label']")
     WebElement eMailTextUnderLoginWindowIsVisible;
 
 

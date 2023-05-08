@@ -10,11 +10,15 @@ public class EditContactPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//*[@id=\"phone\"]")
+    @FindBy(xpath = "//*[@id='phone']")
     WebElement phoneNumberField;
 
-    @FindBy(xpath = "//div[@class='dialog__buttons-container']//*[1]")
+    @FindBy(xpath = "//div[@class='dialog__buttons-container']/button[@type='submit']")
     WebElement saveEditedContactButton;
+
+    @FindBy(xpath = "//div[@class='dialog__buttons-container']/button[contains(text(),'Anuluj')]")
+    WebElement cancelEditedContactButton;
+
 
     public void fillContactPhoneNumberWindow(String phoneNumber) {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(phoneNumberField));

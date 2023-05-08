@@ -11,22 +11,22 @@ public class MailPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//*[@id='wrapper']//section[contains(@class,'section--sidebar')]/div/div[contains(@class,'sidebar__main-panel')]/div[1]/div[2]/div/div")
+    @FindBy(xpath = "//div[@class='sidebar']//div[@ng-if='!isUpdatingAvatar']")
     WebElement avatar;
 
-    @FindBy(xpath = "//*[@id=\"wrapper\"]//span[@class=\"icon icon-inbox\"]")
+    @FindBy(xpath = "//div[@class='navigation navigation--main']//span[@class='icon icon-new-message']")
     WebElement receivedButton;
 
     @FindBy(xpath = "//div[contains(@title,'Kontakty')]")
     WebElement contactBook;
 
-    @FindBy(xpath = "//*[@id=\"wrapper\"]/div[3]/div/ul/li/div[2]")
+    @FindBy(xpath = "//div[@class='notification__message']")
     WebElement contactCorrectAddedAlert;
 
     @FindBy(xpath = "//div[@class='sidebar__title']//div[@class='sidebar__title__icons']/span")
     WebElement contactButton;
 
-    @FindBy(xpath = "//div[@class='notification__list-container']//div[@class='notification__message']")
+    @FindBy(xpath = "//div[@class='notification__list-container']/div[@class='notification__message']")
     WebElement contactEdidetCorrectAlert;
 
     public boolean isAvatarVisible() {
