@@ -23,10 +23,10 @@ public class MailPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"wrapper\"]/div[3]/div/ul/li/div[2]")
     WebElement contactCorrectAddedAlert;
 
-    @FindBy(xpath = "/html/body/div[2]/section[4]/div/div[2]/div[1]/div/span[1]")
+    @FindBy(xpath = "//div[@class='sidebar__title']//div[@class='sidebar__title__icons']/span")
     WebElement contactButton;
 
-    @FindBy(xpath = "//*[@id=\"wrapper\"]/div[3]/div/ul/li/div[2]")
+    @FindBy(xpath = "//div[@class='notification__list-container']//div[@class='notification__message']")
     WebElement contactEdidetCorrectAlert;
 
     public boolean isAvatarVisible() {

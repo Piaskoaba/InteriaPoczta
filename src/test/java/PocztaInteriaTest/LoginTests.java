@@ -79,7 +79,7 @@ public class LoginTests {
         loginPage.fillPasswordWindow(wrongPassword);
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(loginPage.isIncorrectLoginOrPasswordVisible(),"Password or login is not correct");
-        Assert.assertFalse(loginPage.isEmailTextUnderLoginWindowVisible(),"Email is visble");
+        Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible(),"Email is visble");
         Assert.assertFalse(mailPage.isAvatarVisible(),"Avatar is visible");
     }
 

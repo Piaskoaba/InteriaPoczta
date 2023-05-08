@@ -16,8 +16,8 @@ public class ContactDetailsPage extends BasePage {
     @FindBy(xpath = "//div[@class=\"dialog__scroll__header\"]//span[2]")
     WebElement editContactButton;
 
-    @FindBy(xpath = "//*[@id=\"wrapper\"]/div[3]/div/ul/li/div[2]")
-    WebElement contactDeleted;
+    @FindBy(xpath = "//div[@class='notification__message']")
+    WebElement contactDeletedAlert;
 
     @FindBy(xpath = "//*[@id=\"wrapper\"]/div[2]/div/div[2]/div/div[2]/div[2]/div/div/div[2]/ul/li/span[2]")
     WebElement addedContactNumber;
@@ -45,7 +45,7 @@ public class ContactDetailsPage extends BasePage {
 
     public boolean isContactCorrectlyDeletedAllert() {
         try {
-            webDriverWait.until(ExpectedConditions.visibilityOf(contactDeleted)).isDisplayed();
+            webDriverWait.until(ExpectedConditions.visibilityOf(contactDeletedAlert)).isDisplayed();
             return true;
         } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
             return false;

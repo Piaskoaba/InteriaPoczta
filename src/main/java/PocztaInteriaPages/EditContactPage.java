@@ -13,7 +13,7 @@ public class EditContactPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"phone\"]")
     WebElement phoneNumberField;
 
-    @FindBy(xpath = "//*[@id=\"wrapper\"]/div[2]/div/div[2]/div/div[2]/div[2]/div/form/div/div[5]/button[1]")
+    @FindBy(xpath = "//div[@class='dialog__buttons-container']//*[1]")
     WebElement saveEditedContactButton;
 
     public void fillContactPhoneNumberWindow(String phoneNumber) {
