@@ -17,7 +17,7 @@ public class MailPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"wrapper\"]//span[@class=\"icon icon-inbox\"]")
     WebElement receivedButton;
 
-    @FindBy(xpath = "//*[@id=\"wrapper\"]/section[4]/div/div[1]/div[2]")
+    @FindBy(xpath = "//div[contains(@title,'Kontakty')]")
     WebElement contactBook;
 
     @FindBy(xpath = "//*[@id=\"wrapper\"]/div[3]/div/ul/li/div[2]")

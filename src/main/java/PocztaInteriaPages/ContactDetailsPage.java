@@ -7,13 +7,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ContactDetailsPage extends BasePage {
 
-    @FindBy(xpath = "//*[@id=\"wrapper\"]/div[2]/div/div[2]/div/div[2]/div[1]/div[4]/span[3]/div[1]")
+    @FindBy(xpath = "//div[@class=\"dialog__scroll\"]//div[@class='dropdown__icon icon icon-dots']")
     WebElement contactOptionsButton;
 
-    @FindBy(xpath = "//*[@id='wrapper']/div[2]/div/div[2]/div/div[2]/div[1]/div[4]/span[3]/div[2]/div/div/ul/li[4]")
+    @FindBy(xpath = "//*[@class='dialog__scroll']//*[@class='dropdown__list']//*[contains(text(),'Usuń')]")
     WebElement deleteContactButton;
 
-    @FindBy(xpath = "//*[@id=\"wrapper\"]/div[2]/div/div[2]/div/div[2]/div[1]/div[4]/span[2]")
+    @FindBy(xpath = "//div[@class=\"dialog__scroll__header\"]//span[2]")
     WebElement editContactButton;
 
     @FindBy(xpath = "//*[@id=\"wrapper\"]/div[3]/div/ul/li/div[2]")
