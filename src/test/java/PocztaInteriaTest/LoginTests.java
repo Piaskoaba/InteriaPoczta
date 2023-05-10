@@ -28,13 +28,13 @@ public class LoginTests {
     }
 
     @Test(priority = 1, groups = {"all","critical"})
-    public void correctLogin () {
+    public void correctLogin () throws InterruptedException {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
         Assert.assertTrue(homePage.isMailButtonVisible());
         loginPage = homePage.clickMailButton();
         String myLogin = "adam.testowyy@interia.pl";
-        String password = "PocztaInteria123!";
+        String password = "";
         loginPage.fillLoginWindow(myLogin);
         loginPage.fillPasswordWindow(password);
         mailPage = loginPage.clickLogInButton();
@@ -43,7 +43,7 @@ public class LoginTests {
 
     }
     @Test(priority = 2, groups = {"all","low"})
-    public void wrongPassword() {
+    public void wrongPassword() throws InterruptedException {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
         Assert.assertTrue(homePage.isMailButtonVisible());
@@ -59,13 +59,13 @@ public class LoginTests {
     }
 
     @Test(priority = 3, groups = {"all","high"})
-    public void wrongLoginOrPassword() {
+    public void wrongLoginOrPassword() throws InterruptedException {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
         Assert.assertTrue(homePage.isMailButtonVisible(),"Mail button is not visible");
         loginPage = homePage.clickMailButton();
         String wrongLogin = "adamteestowyy@interia.pl";
-        String password = "PocztaInteria123!";
+        String password = "";
         loginPage.fillLoginWindow(wrongLogin);
         loginPage.fillPasswordWindow(password);
         mailPage = loginPage.clickLogInButton();
@@ -75,6 +75,7 @@ public class LoginTests {
         Assert.assertFalse(mailPage.isAvatarVisible(),"Avatar is not Visible");
         String login = "adam.testowyy@interia.pl";
         String wrongPassword = "xyzpass";
+
         loginPage.fillLoginWindow(login);
         loginPage.fillPasswordWindow(wrongPassword);
         mailPage = loginPage.clickLogInButton();

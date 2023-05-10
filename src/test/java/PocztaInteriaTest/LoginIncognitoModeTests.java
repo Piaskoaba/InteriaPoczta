@@ -35,14 +35,14 @@ public class LoginIncognitoModeTests {
     }
 
     @Test(priority = 1, groups = {"all","critical"})
-    public void loginIncognitoMode() {
+    public void loginIncognitoMode() throws InterruptedException {
         homePage = new HomePage(driver);
         homePage.incognitoCookieButtonClick();
         Assert.assertTrue(homePage.isMailButtonVisible(), "Button ins not visible");
         loginPage = homePage.clickMailButton();
         String myLogin = "adam.testowyy@interia.pl";
         loginPage.fillLoginWindow(myLogin);
-        loginPage.fillPasswordWindow("PocztaInteria123!");
+        loginPage.fillPasswordWindow("");
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not visible");
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");

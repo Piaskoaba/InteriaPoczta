@@ -29,14 +29,14 @@ public class ContactTests {
     }
 
     @Test(priority = 1, groups = {"all","critical"})
-    public void addContact() {
+    public void addContact() throws InterruptedException {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
         Assert.assertTrue(homePage.isMailButtonVisible());
         loginPage = homePage.clickMailButton();
         String myLogin = "adam.testowyy@interia.pl";
         loginPage.fillLoginWindow(myLogin);
-        loginPage.fillPasswordWindow("PocztaInteria123!");
+        loginPage.fillPasswordWindow("");
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
@@ -59,7 +59,7 @@ public class ContactTests {
         loginPage = homePage.clickMailButton();
         String myLogin = "adam.testowyy@interia.pl";
         loginPage.fillLoginWindow(myLogin);
-        loginPage.fillPasswordWindow("PocztaInteria123!");
+        loginPage.fillPasswordWindow("");
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
@@ -86,7 +86,7 @@ public class ContactTests {
         loginPage = homePage.clickMailButton();
         String myLogin = "adam.testowyy@interia.pl";
         loginPage.fillLoginWindow(myLogin);
-        loginPage.fillPasswordWindow("PocztaInteria123!");
+        loginPage.fillPasswordWindow("");
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");

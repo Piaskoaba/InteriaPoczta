@@ -26,9 +26,11 @@ public class LoginPage extends BasePage {
     WebElement eMailTextUnderLoginWindowIsVisible;
 
 
-    public void fillLoginWindow(String login) {
+    public void fillLoginWindow(String login) throws InterruptedException {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(loginWindow));
+        Thread.sleep(2000);
         loginWindow.clear();
+        Thread.sleep(2000);
         loginWindow.sendKeys(login);
     }
 
