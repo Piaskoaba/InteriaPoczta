@@ -42,7 +42,7 @@ public class LoginIncognitoModeTests {
         loginPage = homePage.clickMailButton();
         String myLogin = "adam.testowyy@interia.pl";
         loginPage.fillLoginWindow(myLogin);
-        loginPage.fillPasswordWindow("PocztaInteria123!");
+        loginPage.fillPasswordWindow(service.passwordToMyMail());
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not visible");
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");

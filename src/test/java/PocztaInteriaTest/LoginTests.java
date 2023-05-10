@@ -34,9 +34,8 @@ public class LoginTests {
         Assert.assertTrue(homePage.isMailButtonVisible());
         loginPage = homePage.clickMailButton();
         String myLogin = "adam.testowyy@interia.pl";
-        String password = "PocztaInteria123!";
         loginPage.fillLoginWindow(myLogin);
-        loginPage.fillPasswordWindow(password);
+        loginPage.fillPasswordWindow(service.passwordToMyMail());
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
@@ -65,9 +64,8 @@ public class LoginTests {
         Assert.assertTrue(homePage.isMailButtonVisible(),"Mail button is not visible");
         loginPage = homePage.clickMailButton();
         String wrongLogin = "adamteestowyy@interia.pl";
-        String password = "PocztaInteria123!";
         loginPage.fillLoginWindow(wrongLogin);
-        loginPage.fillPasswordWindow(password);
+        loginPage.fillPasswordWindow(service.passwordToMyMail());
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(loginPage.isIncorrectLoginOrPasswordVisible(),"Password or login is not correct");
         Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible(),"Text under login window is not visible");

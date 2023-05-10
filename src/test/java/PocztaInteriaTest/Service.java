@@ -145,6 +145,11 @@ public class Service {
         String randomLine = getRandomLineFromDomainListFile("domainList.txt");
         return randomLine;
     }
+    public String passwordToMyMail() {
+        //String path = new File("domainList.txt").getAbsolutePath() + "/src/domainList.txt";
+        String randomLine = getRandomLineFromDomainListFile("password.txt");
+        return randomLine;
+    }
     }
 
 
