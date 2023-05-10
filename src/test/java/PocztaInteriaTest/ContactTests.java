@@ -44,7 +44,7 @@ public class ContactTests {
         addNewContactPage = mailPage.contactButtonClick();
         String name = service.getRandomValue(service.namesList());
         String sureName = service.getRandomValue(service.sureNamesList());
-        String email = service.createEmailAddress(name, sureName, service.randomNumber(), service.getRandomValue(service.eMailsDomenList()));
+        String email = service.createEmailAddress(name, sureName, service.randomNumber(), service.randomValueFromDomainList());
         addNewContactPage.fillContactNameWindow(name, sureName);
         addNewContactPage.fillContactMailWindow(email);
         addNewContactPage.saveContactButtonClick();

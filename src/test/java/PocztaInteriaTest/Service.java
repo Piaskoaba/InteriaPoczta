@@ -3,8 +3,14 @@ package PocztaInteriaTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 
 public class Service {
@@ -123,7 +129,25 @@ public class Service {
         System.out.println(contactNumber);
         return contactNumber;
     }
-}
+    private static String getRandomLineFromDomainListFile(String path) {
+        List<String> lines;
+        try {
+            lines = Files.readAllLines(Paths.get(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        Random random = new Random();
+        return lines.get(random.nextInt(lines.size()));
+    }
+    public String randomValueFromDomainList() {
+        //String path = new File("domainList.txt").getAbsolutePath() + "/src/domainList.txt";
+        String randomLine = getRandomLineFromDomainListFile("domainList.txt");
+        return randomLine;
+    }
+    }
+
+
 
 
 
