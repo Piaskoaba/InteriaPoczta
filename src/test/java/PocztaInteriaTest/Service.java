@@ -129,7 +129,7 @@ public class Service {
         System.out.println(contactNumber);
         return contactNumber;
     }
-    private static String getRandomLineFromDomainListFile(String path) {
+    private static String getRandomLineFromFile(String path) {
         List<String> lines;
         try {
             lines = Files.readAllLines(Paths.get(path));
@@ -138,16 +138,17 @@ public class Service {
             return null;
         }
         Random random = new Random();
+
         return lines.get(random.nextInt(lines.size()));
     }
     public String randomValueFromDomainList() {
         //String path = new File("domainList.txt").getAbsolutePath() + "/src/domainList.txt";
-        String randomLine = getRandomLineFromDomainListFile("domainList.txt");
+        String randomLine = getRandomLineFromFile("domainList.txt");
         return randomLine;
     }
     public String passwordToMyMail() {
         //String path = new File("domainList.txt").getAbsolutePath() + "/src/domainList.txt";
-        String randomLine = getRandomLineFromDomainListFile("password.txt");
+        String randomLine = getRandomLineFromFile("password.txt");
         return randomLine;
     }
     }
