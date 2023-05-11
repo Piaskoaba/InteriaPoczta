@@ -7,10 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Service {
@@ -150,6 +147,19 @@ public class Service {
         //String path = new File("domainList.txt").getAbsolutePath() + "/src/domainList.txt";
         String randomLine = getRandomLineFromFile("password.txt");
         return randomLine;
+    }
+    public String getCredentialValue(String credentialName) {
+        String credentialValue = null;
+        try (FileReader reader = new FileReader("credentials.txt")) {
+            Properties properties = new Properties();
+            properties.load(reader);
+
+            credentialValue = properties.getProperty(credentialName);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return credentialValue;
     }
     }
 

@@ -33,9 +33,10 @@ public class LoginTests {
         homePage.cookieButtonClick();
         Assert.assertTrue(homePage.isMailButtonVisible());
         loginPage = homePage.clickMailButton();
-        String myLogin = "adam.testowyy@interia.pl";
+        String myLogin = service.getCredentialValue("eMailLogin");
+        String myPassword = service.getCredentialValue("eMailPassword");
         loginPage.fillLoginWindow(myLogin);
-        loginPage.fillPasswordWindow(service.passwordToMyMail());
+        loginPage.fillPasswordWindow(myPassword);
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
@@ -47,7 +48,8 @@ public class LoginTests {
         homePage.cookieButtonClick();
         Assert.assertTrue(homePage.isMailButtonVisible());
         loginPage = homePage.clickMailButton();
-        String myLogin = "adam.testowyy@interia.pl";
+        String myLogin = service.getCredentialValue("eMailLogin");
+        loginPage.fillLoginWindow(myLogin);
         String wrongPassword = "xyzpass";
         loginPage.fillLoginWindow(myLogin);
         loginPage.fillPasswordWindow(wrongPassword);
@@ -63,9 +65,10 @@ public class LoginTests {
         homePage.cookieButtonClick();
         Assert.assertTrue(homePage.isMailButtonVisible(),"Mail button is not visible");
         loginPage = homePage.clickMailButton();
-        String wrongLogin = "adamteestowyy@interia.pl";
-        loginPage.fillLoginWindow(wrongLogin);
-        loginPage.fillPasswordWindow(service.passwordToMyMail());
+        String myLogin = "xyz";
+        String myPassword = service.getCredentialValue("eMailPassword");
+        loginPage.fillLoginWindow(myLogin);
+        loginPage.fillPasswordWindow(myPassword);
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(loginPage.isIncorrectLoginOrPasswordVisible(),"Password or login is not correct");
         Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible(),"Text under login window is not visible");

@@ -40,9 +40,10 @@ public class LoginIncognitoModeTests {
         homePage.incognitoCookieButtonClick();
         Assert.assertTrue(homePage.isMailButtonVisible(), "Button ins not visible");
         loginPage = homePage.clickMailButton();
-        String myLogin = "adam.testowyy@interia.pl";
+        String myLogin = service.getCredentialValue("eMailLogin");
+        String myPassword = service.getCredentialValue("eMailPassword");
         loginPage.fillLoginWindow(myLogin);
-        loginPage.fillPasswordWindow(service.passwordToMyMail());
+        loginPage.fillPasswordWindow(myPassword);
         mailPage = loginPage.clickLogInButton();
         Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not visible");
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
