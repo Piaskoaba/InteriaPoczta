@@ -21,13 +21,19 @@ public class MailPage extends BasePage {
     WebElement contactBook;
 
     @FindBy(xpath = "//div[@class='notification__message']")
-    WebElement contactCorrectAddedAlert;
+    WebElement norificationMessage;
+
 
     @FindBy(xpath = "//div[@class='sidebar__title']//div[@class='sidebar__title__icons']/span")
     WebElement contactButton;
 
     @FindBy(xpath = "//div[@class='notification__list-container']/div[@class='notification__message']")
     WebElement contactEdidetCorrectAlert;
+    @FindBy(xpath = "//section[@class='msglist-toolbar']/label[@for='isSelectAllView']")
+    WebElement allMessagesCheckBox;
+    @FindBy(xpath = "//div[@ng-if='::!folder.isTrash && !folder.isSpam']/span[@class='msglist-action-bar__button-text']")
+    WebElement deleteAllMesages;
+
 
     public boolean isAvatarVisible() {
         try {
@@ -62,7 +68,7 @@ public class MailPage extends BasePage {
 
     public boolean isContactCorrectlyAddedAlert() {
         try {
-            return webDriverWait.until(ExpectedConditions.visibilityOf(contactCorrectAddedAlert)).isDisplayed();
+            return webDriverWait.until(ExpectedConditions.visibilityOf(norificationMessage)).isDisplayed();
         } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
             return false;
         }
@@ -82,7 +88,33 @@ public class MailPage extends BasePage {
             return false;
         }
     }
-}
 
+    public boolean deleteAllMessagesCheckBoxIsVissible() {
+        try {
+            return webDriverWait.until(ExpectedConditions.elementToBeClickable(allMessagesCheckBox)).isDisplayed();
+        } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    public void deleteAllMessagesCheckBoxClick() {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(allMessagesCheckBox));
+        allMessagesCheckBox.click();
+    }
+
+    public void deleteAllMesagesClick() {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteAllMesages));
+        deleteAllMesages.click();
+    }
+
+    public boolean isDeletedMessagesNotificationVisible() {
+        try {
+            webDriverWait.until(ExpectedConditions.visibilityOf(norificationMessage)).isDisplayed();
+            return true;
+        } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
+    }
+}
 
 

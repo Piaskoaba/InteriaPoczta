@@ -27,8 +27,8 @@ public class LoginTests {
         driver.manage().window().maximize();
     }
 
-    @Test(priority = 1, groups = {"all","critical"})
-    public void correctLogin () {
+    @Test(priority = 1, groups = {"all", "critical"})
+    public void correctLogin() {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
         Assert.assertTrue(homePage.isMailButtonVisible());
@@ -42,7 +42,8 @@ public class LoginTests {
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
 
     }
-    @Test(priority = 2, groups = {"all","low"})
+
+    @Test(priority = 2, groups = {"all", "low"})
     public void wrongPassword() {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
@@ -54,57 +55,77 @@ public class LoginTests {
         loginPage.fillLoginWindow(myLogin);
         loginPage.fillPasswordWindow(wrongPassword);
         mailPage = loginPage.clickLogInButton();
-        Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible(),"Text under login window is not visible");
-        Assert.assertFalse(mailPage.isAvatarVisible(),"Avatar is not Visible");
+        Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible(), "Text under login window is not visible");
+        Assert.assertFalse(mailPage.isAvatarVisible(), "Avatar is not Visible");
 
     }
 
-    @Test(priority = 3, groups = {"all","high"})
+    @Test(priority = 3, groups = {"all", "high"})
     public void wrongLoginOrPassword() {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
-        Assert.assertTrue(homePage.isMailButtonVisible(),"Mail button is not visible");
+        Assert.assertTrue(homePage.isMailButtonVisible(), "Mail button is not visible");
         loginPage = homePage.clickMailButton();
         String myLogin = "xyz";
         String myPassword = service.getCredentialValue("eMailPassword");
         loginPage.fillLoginWindow(myLogin);
         loginPage.fillPasswordWindow(myPassword);
         mailPage = loginPage.clickLogInButton();
-        Assert.assertTrue(loginPage.isIncorrectLoginOrPasswordVisible(),"Password or login is not correct");
-        Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible(),"Text under login window is not visible");
-        Assert.assertTrue(loginPage.isLoginButtonVisible(),"Login button is not visible");
-        Assert.assertFalse(mailPage.isAvatarVisible(),"Avatar is not Visible");
+        Assert.assertTrue(loginPage.isIncorrectLoginOrPasswordVisible(), "Password or login is not correct");
+        Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible(), "Text under login window is not visible");
+        Assert.assertTrue(loginPage.isLoginButtonVisible(), "Login button is not visible");
+        Assert.assertFalse(mailPage.isAvatarVisible(), "Avatar is not Visible");
         String login = "adam.testowyy@interia.pl";
         String wrongPassword = "xyzpass";
         loginPage.fillLoginWindow(login);
         loginPage.fillPasswordWindow(wrongPassword);
         mailPage = loginPage.clickLogInButton();
-        Assert.assertTrue(loginPage.isIncorrectLoginOrPasswordVisible(),"Password or login is not correct");
-        Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible(),"Email is visble");
-        Assert.assertFalse(mailPage.isAvatarVisible(),"Avatar is visible");
+        Assert.assertTrue(loginPage.isIncorrectLoginOrPasswordVisible(), "Password or login is not correct");
+        Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible(), "Email is visble");
+        Assert.assertFalse(mailPage.isAvatarVisible(), "Avatar is visible");
     }
 
-    @Test(priority = 4, groups = {"all","low"})
+    @Test(priority = 4, groups = {"all", "low"})
     public void emptyWindowsLogin() {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
         Assert.assertTrue(homePage.isMailButtonVisible());
         loginPage = homePage.clickMailButton();
         mailPage = loginPage.clickLogInButton();
-        Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible(),"Text under login window is not visible");
-        Assert.assertFalse(mailPage.isAvatarVisible(),"Avatar is Visible");
-        Assert.assertTrue(loginPage.isLoginButtonVisible(),"Login button is not visible");
-        Assert.assertEquals(loginPage.getTextFromLoginWindow(),"");
-        Assert.assertEquals(loginPage.getTextFromPasswordWindow(),"");
+        Assert.assertTrue(loginPage.isEmailTextUnderLoginWindowVisible(), "Text under login window is not visible");
+        Assert.assertFalse(mailPage.isAvatarVisible(), "Avatar is Visible");
+        Assert.assertTrue(loginPage.isLoginButtonVisible(), "Login button is not visible");
+        Assert.assertEquals(loginPage.getTextFromLoginWindow(), "");
+        Assert.assertEquals(loginPage.getTextFromPasswordWindow(), "");
     }
 
-    @AfterTest(alwaysRun = true)
-    public void afterTest(){
-        driver.quit();
+    @Test(priority = 3, groups = {"all", "low"})
+    public void deleteMessages() {
+        homePage = new HomePage(driver);
+        homePage.cookieButtonClick();
+        Assert.assertTrue(homePage.isMailButtonVisible());
+        loginPage = homePage.clickMailButton();
+        String myLogin = service.getCredentialValue("eMailLogin");
+        String myPassword = service.getCredentialValue("eMailPassword");
+        loginPage.fillLoginWindow(myLogin);
+        loginPage.fillPasswordWindow(myPassword);
+        mailPage = loginPage.clickLogInButton();
+        Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
+        Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
+        Assert.assertTrue(mailPage.deleteAllMessagesCheckBoxIsVissible(), "Checkbox is not visible");
+        mailPage.deleteAllMessagesCheckBoxClick();
+        mailPage.deleteAllMesagesClick();
+        Assert.assertTrue(mailPage.isDeletedMessagesNotificationVisible());
     }
+}
+  //     @AfterTest(alwaysRun = true)
+  //     public void afterTest () {
+  //         driver.quit();
+  //     }
 
-    @AfterMethod(alwaysRun = true)
-        public void afterMethod(){
-            driver.close();
-        }
-    }
+  //     @AfterMethod(alwaysRun = true)
+  //     public void afterMethod () {
+  //         driver.close();
+  //     }
+  // }
+

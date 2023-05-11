@@ -110,7 +110,6 @@ public class ContactTests {
         Assert.assertFalse(mailPage.isEditedContactCorrectlySaved(),"Edited contact correctly saved");
         contactDetailsPage = mailPage.contactByMailAddressClick(email);
         Assert.assertEquals(contactDetailsPage.getPhoneNumberFromContactDetailsWindow(), cellPhoneNumber);
-
     }
 
     @AfterTest(alwaysRun = true)
