@@ -18,14 +18,14 @@ public class LoginTests {
     MailPage mailPage;
     Service service;
 
-    @BeforeMethod(alwaysRun = true)
-    public void runBrowser() {
-        driver = new ChromeDriver();
-        service = new Service(driver);
-        System.setProperty(service.chromeDriverUrl(), service.getDriver());
-        driver.get(service.urlStringInteria());
-        driver.manage().window().maximize();
-    }
+  //  @BeforeMethod(alwaysRun = true)
+  //  public void runBrowser() {
+  //      driver = new ChromeDriver();
+  //      service = new Service(driver);
+  //      System.setProperty(service.chromeDriverUrl(), service.getDriver());
+  //      driver.get(service.urlStringInteria());
+  //      driver.manage().window().maximize();
+   // }
 
     @Test(priority = 1, groups = {"all", "critical"})
     public void correctLogin() {
@@ -117,15 +117,15 @@ public class LoginTests {
         mailPage.deleteAllMesagesClick();
         Assert.assertTrue(mailPage.isDeletedMessagesNotificationVisible());
     }
-}
-  //     @AfterTest(alwaysRun = true)
-  //     public void afterTest () {
-  //         driver.quit();
-  //     }
+    @Test
+       @AfterTest(alwaysRun = true)
+       public void afterTest () {
+           driver.quit();
+       }
 
-  //     @AfterMethod(alwaysRun = true)
-  //     public void afterMethod () {
-  //         driver.close();
-  //     }
-  // }
+       @AfterMethod(alwaysRun = true)
+       public void afterMethod () {
+           driver.close();
+       }
+   }
 

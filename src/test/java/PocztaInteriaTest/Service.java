@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.*;
 import java.util.*;
 
 
@@ -19,6 +20,28 @@ public class Service {
         this.driver = driver;
         webDriverWait = new WebDriverWait(driver, 15);
         PageFactory.initElements(driver, this);
+    }
+
+    public Connection connect_to_db(String dbname, String user, String pass) {
+
+        Connection conn = null;
+        try {
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/PocztaInteriaTest" + dbname, user, pass);
+            if (conn != null) {
+                System.out.println("Connection Established");
+            } else {
+                System.out.println("Connection Failed");
+            }
+
+        } catch (SQLException | ClassNotFoundException e) {
+            System.out.println(e);
+        }
+        return conn;
+    }
+
+    public String getFemaleFirstName() {
+        return "SELECT first_name FROM female_first_name ORDER BY RANDOM() FETCH FIRST ROWS ONLY;";
     }
 
     public String chromeDriverUrl() {
@@ -126,6 +149,7 @@ public class Service {
         System.out.println(contactNumber);
         return contactNumber;
     }
+
     private static String getRandomLineFromFile(String path) {
         List<String> lines;
         try {
@@ -138,16 +162,19 @@ public class Service {
 
         return lines.get(random.nextInt(lines.size()));
     }
+
     public String randomValueFromDomainList() {
         //String path = new File("domainList.txt").getAbsolutePath() + "/src/domainList.txt";
         String randomLine = getRandomLineFromFile("domainList.txt");
         return randomLine;
     }
+
     public String passwordToMyMail() {
         //String path = new File("domainList.txt").getAbsolutePath() + "/src/domainList.txt";
         String randomLine = getRandomLineFromFile("password.txt");
         return randomLine;
     }
+
     public String getCredentialValue(String credentialName) {
         String credentialValue = null;
         try (FileReader reader = new FileReader("credentials.txt")) {
@@ -161,7 +188,31 @@ public class Service {
         }
         return credentialValue;
     }
+    public String pocztaInteriaDatabase(String sqlQuery) {
+
+        String url = getCredentialValue("jdbc:postgresql://lucky.db.elephantsql.com:5432/ugpznmgs");
+        String username = getCredentialValue("ugpznmgs");
+        String password = getCredentialValue("dFMyhuLqfWPg14rtuXNyousbq_md81-y");
+        String queryResult = null;
+
+        try {
+            Connection dbConnection = DriverManager.getConnection(url, username, password);
+            Statement st = dbConnection.createStatement();
+            ResultSet rs = st.executeQuery(sqlQuery);
+            System.out.println("Executing query: " + sqlQuery);
+            while (rs.next()) {
+                queryResult = rs.getString(1);
+                System.out.println("Result: " + queryResult);
+            }
+            rs.close();
+            st.close();
+            dbConnection.close();
+        } catch (java.sql.SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return queryResult;
     }
+}
 
 
 
