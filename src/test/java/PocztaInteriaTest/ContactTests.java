@@ -18,6 +18,7 @@ public class ContactTests {
     AddNewContactPage addNewContactPage;
     ContactDetailsPage contactDetailsPage;
     EditContactPage editContactPage;
+    SqlQueries sqlQueries;
 
     @BeforeMethod(alwaysRun = true)
     public void runBrowser() {
@@ -110,6 +111,30 @@ public class ContactTests {
         Assert.assertFalse(mailPage.isEditedContactCorrectlySaved(),"Edited contact correctly saved");
         contactDetailsPage = mailPage.contactByMailAddressClick(email);
         Assert.assertEquals(contactDetailsPage.getPhoneNumberFromContactDetailsWindow(), cellPhoneNumber);
+    }
+    @Test(priority = 1, groups = {"all","critical"})
+    public void addContactbySqlDataBase() {
+        homePage = new HomePage(driver);
+        homePage.cookieButtonClick();
+
+        Assert.assertTrue(homePage.isMailButtonVisible());
+        loginPage = homePage.clickMailButton();
+        String myLogin = service.getCredentialValue("eMailLogin");
+        String myPassword = service.getCredentialValue("eMailPassword");
+        loginPage.fillLoginWindow(myLogin);
+        loginPage.fillPasswordWindow(myPassword);
+        mailPage = loginPage.clickLogInButton();
+        Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
+        Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
+        mailPage.contactBookButtonClick();
+        addNewContactPage = mailPage.contactButtonClick();
+        String name = service.getRandomValue(service.namesList());
+        String sureName = service.getRandomValue(service.sureNamesList());
+        String email = service.createEmailAddress(sqlQueries.getFemaleFirstName(), sureName, service.randomNumber(), service.randomValueFromDomainList());
+        addNewContactPage.fillContactNameWindow(name, sureName);
+        addNewContactPage.fillContactMailWindow(email);
+        addNewContactPage.saveContactButtonClick();
+        Assert.assertTrue(addNewContactPage.isContactCorrectlyAddedAlert(), "Contact not added");
     }
 
     @AfterTest(alwaysRun = true)

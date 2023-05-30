@@ -117,7 +117,7 @@ public class LoginTests {
         mailPage.deleteAllMesagesClick();
         Assert.assertTrue(mailPage.isDeletedMessagesNotificationVisible());
     }
-    @Test
+
        @AfterTest(alwaysRun = true)
        public void afterTest () {
            driver.quit();

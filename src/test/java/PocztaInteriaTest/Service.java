@@ -190,9 +190,9 @@ public class Service {
     }
     public String pocztaInteriaDatabase(String sqlQuery) {
 
-        String url = getCredentialValue("jdbc:postgresql://lucky.db.elephantsql.com:5432/ugpznmgs");
-        String username = getCredentialValue("ugpznmgs");
-        String password = getCredentialValue("dFMyhuLqfWPg14rtuXNyousbq_md81-y");
+        String url = getCredentialValue("sqlURL");
+        String username = getCredentialValue("sqlLogin");
+        String password = getCredentialValue("sqlPassword");
         String queryResult = null;
 
         try {
