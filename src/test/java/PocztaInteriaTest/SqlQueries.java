@@ -16,7 +16,7 @@ public class SqlQueries {
 
         }
         public String getFemaleFirstName() {
-            return "SELECT last_name FROM female_first_name ORDER BY RANDOM() FETCH FIRST ROWS ONLY;";
+            return "SELECT name FROM female_first_name ORDER BY RANDOM();";
         }
     }
 

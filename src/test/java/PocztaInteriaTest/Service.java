@@ -21,29 +21,6 @@ public class Service {
         webDriverWait = new WebDriverWait(driver, 15);
         PageFactory.initElements(driver, this);
     }
-
-    public Connection connect_to_db(String dbname, String user, String pass) {
-
-        Connection conn = null;
-        try {
-            Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/PocztaInteriaTest" + dbname, user, pass);
-            if (conn != null) {
-                System.out.println("Connection Established");
-            } else {
-                System.out.println("Connection Failed");
-            }
-
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println(e);
-        }
-        return conn;
-    }
-
-    public String getFemaleFirstName() {
-        return "SELECT first_name FROM female_first_name ORDER BY RANDOM() FETCH FIRST ROWS ONLY;";
-    }
-
     public String chromeDriverUrl() {
         return "webdriver.chrome.driver";
     }
@@ -168,13 +145,6 @@ public class Service {
         String randomLine = getRandomLineFromFile("domainList.txt");
         return randomLine;
     }
-
-    public String passwordToMyMail() {
-        //String path = new File("domainList.txt").getAbsolutePath() + "/src/domainList.txt";
-        String randomLine = getRandomLineFromFile("password.txt");
-        return randomLine;
-    }
-
     public String getCredentialValue(String credentialName) {
         String credentialValue = null;
         try (FileReader reader = new FileReader("credentials.txt")) {
@@ -190,9 +160,9 @@ public class Service {
     }
     public String pocztaInteriaDatabase(String sqlQuery) {
 
-        String url = getCredentialValue("sqlURL");
-        String username = getCredentialValue("sqlLogin");
-        String password = getCredentialValue("sqlPassword");
+        String url = getCredentialValue("sqlLocalUrl");
+        String username = getCredentialValue("sqlLocalLogin");
+        String password = getCredentialValue("sqlLocalPassword");
         String queryResult = null;
 
         try {
@@ -212,6 +182,22 @@ public class Service {
         }
         return queryResult;
     }
+  // public void connectToSqlBase(String sqlQuery) {
+  //     String jdbcURL = getCredentialValue("sqlLocalUrl");
+  //     String username = getCredentialValue("sqlLocalLogin");
+  //     String password = getCredentialValue("sqlLocalPassword");
+
+  //     try {
+  //         Connection connection = DriverManager.getConnection(jdbcURL, username, password);
+  //         System.out.println("Connected to the PostgreSQL database!");
+
+  //         // Perform database operations here
+
+  //         connection.close();
+  //     } catch (SQLException e) {
+  //         System.out.println("Connection failure: " + e.getMessage());
+  //     }
+  // }
 }
 
 
