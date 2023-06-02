@@ -147,7 +147,7 @@ public class Service {
     }
     public String getCredentialValue(String credentialName) {
         String credentialValue = null;
-        try (FileReader reader = new FileReader("credentials.txt")) {
+        try (FileReader reader = new FileReader("credentials")) {
             Properties properties = new Properties();
             properties.load(reader);
 
@@ -181,6 +181,15 @@ public class Service {
             System.out.println(e.getMessage());
         }
         return queryResult;
+    }
+    public String minimizeString(String stringToMinimize) {   //pierwsza litera duza, reszta mała
+        int end = stringToMinimize.length();
+        String firstLetter = stringToMinimize.substring(0, 1);
+        String restOfString = stringToMinimize.substring(1, end);
+        String minimizedString = firstLetter + restOfString.toLowerCase();
+        System.out.println("String after lowering letters: " + minimizedString);
+        ;
+        return minimizedString;
     }
   // public void connectToSqlBase(String sqlQuery) {
   //     String jdbcURL = getCredentialValue("sqlLocalUrl");

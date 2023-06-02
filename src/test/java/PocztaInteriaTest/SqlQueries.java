@@ -15,8 +15,8 @@ public class SqlQueries {
             webDriverWait = new WebDriverWait(driver, TIMEOUT);
 
         }
-        public String getFemaleFirstName() {
-            return "SELECT name FROM female_first_name ORDER BY RANDOM();";
+        public String getMaleFirstName() {
+            return "SELECT malenames FROM malenames ORDER BY RANDOM() FETCH FIRST ROWS ONLY;";
         }
     }
 

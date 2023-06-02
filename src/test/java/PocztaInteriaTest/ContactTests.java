@@ -19,14 +19,15 @@ public class ContactTests {
     ContactDetailsPage contactDetailsPage;
     EditContactPage editContactPage;
     SqlQueries sqlQueries;
+    NewMessagePage newMessagePage;
 
-   @BeforeMethod(alwaysRun = true)
-   public void runBrowser() {
-       driver = new ChromeDriver();
-       service = new Service(driver);
-       System.setProperty(service.chromeDriverUrl(), service.getDriver());
-       driver.get(service.urlStringInteria());
-       driver.manage().window().maximize();
+    @BeforeMethod(alwaysRun = true)
+    public void runBrowser() {
+        driver = new ChromeDriver();
+        service = new Service(driver);
+        System.setProperty(service.chromeDriverUrl(), service.getDriver());
+        driver.get(service.urlStringInteria());
+        driver.manage().window().maximize();
     }
 
     @Test(priority = 1, groups = {"all", "critical"})
@@ -129,13 +130,33 @@ public class ContactTests {
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
         mailPage.contactBookButtonClick();
         addNewContactPage = mailPage.contactButtonClick();
-        String name = sqlQueries.getFemaleFirstName();
+        String name = sqlQueries.getMaleFirstName();
         String sureName = service.getRandomValue(service.sureNamesList());
-        String email = service.createEmailAddress(sqlQueries.getFemaleFirstName(), sureName, service.randomNumber(), service.randomValueFromDomainList());
+        String email = service.createEmailAddress(sqlQueries.getMaleFirstName(), sureName, service.randomNumber(), service.randomValueFromDomainList());
         addNewContactPage.fillContactNameWindow(name, sureName);
         addNewContactPage.fillContactMailWindow(email);
         addNewContactPage.saveContactButtonClick();
         Assert.assertTrue(addNewContactPage.isContactCorrectlyAddedAlert(), "Contact not added");
+    }
+
+    @Test
+    public void sendMessage() {
+        homePage = new HomePage(driver);
+        homePage.cookieButtonClick();
+        Assert.assertTrue(homePage.isMailButtonVisible());
+        loginPage = homePage.clickMailButton();
+        String myLogin = service.getCredentialValue("eMailLogin");
+        String myPassword = service.getCredentialValue("eMailPassword");
+        loginPage.fillLoginWindow(myLogin);
+        loginPage.fillPasswordWindow(myPassword);
+        mailPage = loginPage.clickLogInButton();
+        Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
+        Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
+        Assert.assertTrue(mailPage.isNewMessageButtonClickable(), "Write new message button is not visible");
+        newMessagePage = mailPage.writeNewMessageButtonClick();
+        String recipient = service.
+        newMessagePage.fillNewRecipientField();
+
     }
 
     @Test
@@ -157,7 +178,7 @@ public class ContactTests {
             Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
             mailPage.contactBookButtonClick();
             addNewContactPage = mailPage.contactButtonClick();
-            String name = service.pocztaInteriaDatabase(sqlQueries.getFemaleFirstName());
+            String name = service.pocztaInteriaDatabase(sqlQueries.getMaleFirstName());
             String surename = service.getRandomValue(service.sureNamesList());
             addNewContactPage.fillContactNameWindow(name, surename);
         } catch (Exception exception) {

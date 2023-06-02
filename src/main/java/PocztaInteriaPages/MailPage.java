@@ -33,6 +33,8 @@ public class MailPage extends BasePage {
     WebElement allMessagesCheckBox;
     @FindBy(xpath = "//div[@ng-if='::!folder.isTrash && !folder.isSpam']/span[@class='msglist-action-bar__button-text']")
     WebElement deleteAllMesages;
+    @FindBy(xpath = "//span[@class='navigation__new__text']")
+    WebElement writeNewMessageButton;
 
 
     public boolean isAvatarVisible() {
@@ -115,6 +117,23 @@ public class MailPage extends BasePage {
             return false;
         }
     }
+
+    public boolean isNewMessageButtonClickable() {
+        try {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(writeNewMessageButton));
+            return true;
+        } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    public NewMessagePage writeNewMessageButtonClick() {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(writeNewMessageButton));
+        writeNewMessageButton.click();
+        return new NewMessagePage(driver);
+    }
 }
+
+
 
 
