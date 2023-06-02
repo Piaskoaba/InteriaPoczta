@@ -11,12 +11,22 @@ public class NewMessagePage extends BasePage {
     }
     @FindBy(xpath = "//div[@class='composition-to']//input[@ng-model='inputEmail']")
     WebElement newRecipientField;
+    @FindBy(xpath ="//div[@ng-if='!isPlaceholderTouched() && compositionId']")
+    WebElement textField;
+    @FindBy(xpath = "//*[@id='subject']")
+    WebElement subjectField;
 
     public void fillNewRecipientField(String newRecipient){
         webDriverWait.until(ExpectedConditions.visibilityOf(newRecipientField));
         newRecipientField.clear();
         newRecipientField.sendKeys(newRecipient);
         }
+    public void fillSubjectField(String subject){
+        webDriverWait.until(ExpectedConditions.visibilityOf(subjectField));
+        subjectField.click();
+        subjectField.clear();
+        subjectField.sendKeys(subject);
+    }
     }
 
 

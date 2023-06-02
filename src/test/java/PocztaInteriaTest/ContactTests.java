@@ -112,11 +112,11 @@ public class ContactTests {
         Assert.assertEquals(contactDetailsPage.getPhoneNumberFromContactDetailsWindow(), cellPhoneNumber);
     }
 
-
-    @Test(priority = 3, groups = {"all", "critical"})
-    public void sendMessage() {
+    @Test(priority = 3, groups = {"all", "critical"}) //ToDo
+    public void sendNewMessage() {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
+        sqlQueries = new SqlQueries(driver);
         Assert.assertTrue(homePage.isMailButtonVisible());
         loginPage = homePage.clickMailButton();
         String myLogin = service.getCredentialValue("eMailLogin");
@@ -128,10 +128,11 @@ public class ContactTests {
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
         Assert.assertTrue(mailPage.isNewMessageButtonClickable(), "Write new message button is not visible");
         newMessagePage = mailPage.writeNewMessageButtonClick();
-        String recipientName = service.minimizeString(service.pocztaInteriaDatabase(sqlQueries.getFemaleFirstName()));
-        String recipientSureName = service.minimizeString(service.pocztaInteriaDatabase(sqlQueries.getMaleSureName()));
-
-        newMessagePage.fillNewRecipientField(recipientName + recipientSureName);
+        String name = service.minimizeMailString(service.pocztaInteriaDatabase(sqlQueries.getMaleFirstName()));
+        String sureName = service.minimizeMailString(service.pocztaInteriaDatabase(sqlQueries.getMaleSureName()));
+        String recipient = name + sureName + service.randomValueFromDomainList();
+        newMessagePage.fillNewRecipientField(recipient);
+        newMessagePage.fillSubjectField("yoursubject");
 
     }
 
@@ -142,7 +143,6 @@ public class ContactTests {
             sqlQueries = new SqlQueries(driver);
             homePage = new HomePage(driver);
             homePage.cookieButtonClick();
-
             Assert.assertTrue(homePage.isMailButtonVisible());
             loginPage = homePage.clickMailButton();
             String myLogin = service.getCredentialValue("eMailLogin");
@@ -155,14 +155,12 @@ public class ContactTests {
             mailPage.contactBookButtonClick();
             addNewContactPage = mailPage.contactButtonClick();
             String name = service.minimizeString(service.pocztaInteriaDatabase(sqlQueries.getFemaleFirstName()));
-            String sureName = service.minimizeString(service.getRandomValue(service.sureNamesList()));
+            String sureName = service.minimizeString(service.pocztaInteriaDatabase(sqlQueries.getFemaleSureName()));
             addNewContactPage.fillContactNameWindow(name, sureName);
             String email = service.minimizeMailString(name + sureName + service.randomNumber() + service.randomValueFromDomainList());
             addNewContactPage.fillContactMailWindow(email);
             addNewContactPage.saveContactButtonClick();
-            Assert.assertTrue(addNewContactPage.isContactCorrectlyAddedAlert());
-
-
+            Assert.assertTrue(addNewContactPage.isContactCorrectlyAddedAlert(), "Contact is not added to contact list");
 
         } catch (Exception exception) {
             System.out.println("Error occurred");
@@ -170,13 +168,13 @@ public class ContactTests {
         }
     }
 
-   //  @AfterTest(alwaysRun = true)
-   //  public void afterTest() {
-   //      driver.quit();
-   //  }
-//
-   //  @AfterMethod(alwaysRun = true)
-   //  public void afterMethod() {
-   //      driver.close();
-   //  }
+    // @AfterTest(alwaysRun = true)
+    public void afterTest() {
+        driver.quit();
+    }
+
+    // @AfterMethod(alwaysRun = true)
+    public void afterMethod() {
+        driver.close();
+    }
 }
