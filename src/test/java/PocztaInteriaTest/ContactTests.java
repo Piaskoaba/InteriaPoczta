@@ -4,8 +4,6 @@ import PocztaInteriaPages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -114,30 +112,6 @@ public class ContactTests {
         Assert.assertEquals(contactDetailsPage.getPhoneNumberFromContactDetailsWindow(), cellPhoneNumber);
     }
 
-    @Test(priority = 1, groups = {"all", "critical"})
-    public void addContactbySqlDataBase() {
-        homePage = new HomePage(driver);
-        homePage.cookieButtonClick();
-
-        Assert.assertTrue(homePage.isMailButtonVisible());
-        loginPage = homePage.clickMailButton();
-        String myLogin = service.getCredentialValue("eMailLogin");
-        String myPassword = service.getCredentialValue("eMailPassword");
-        loginPage.fillLoginWindow(myLogin);
-        loginPage.fillPasswordWindow(myPassword);
-        mailPage = loginPage.clickLogInButton();
-        Assert.assertTrue(mailPage.isAvatarVisible(), "Avatar is not  visible");
-        Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
-        mailPage.contactBookButtonClick();
-        addNewContactPage = mailPage.contactButtonClick();
-        String name = sqlQueries.getMaleFirstName();
-        String sureName = service.getRandomValue(service.sureNamesList());
-        String email = service.createEmailAddress(sqlQueries.getMaleFirstName(), sureName, service.randomNumber(), service.randomValueFromDomainList());
-        addNewContactPage.fillContactNameWindow(name, sureName);
-        addNewContactPage.fillContactMailWindow(email);
-        addNewContactPage.saveContactButtonClick();
-        Assert.assertTrue(addNewContactPage.isContactCorrectlyAddedAlert(), "Contact not added");
-    }
 
     @Test(priority = 3, groups = {"all", "critical"})
     public void sendMessage() {
@@ -154,14 +128,15 @@ public class ContactTests {
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
         Assert.assertTrue(mailPage.isNewMessageButtonClickable(), "Write new message button is not visible");
         newMessagePage = mailPage.writeNewMessageButtonClick();
-        String recipientName = service.minimizeString(service.pocztaInteriaDatabase(sqlQueries.getMaleFirstName()));
+        String recipientName = service.minimizeString(service.pocztaInteriaDatabase(sqlQueries.getFemaleFirstName()));
         String recipientSureName = service.minimizeString(service.pocztaInteriaDatabase(sqlQueries.getMaleSureName()));
+
         newMessagePage.fillNewRecipientField(recipientName + recipientSureName);
 
     }
 
     @Test
-    public void addNewContactsqlBase() {
+    public void addNewContactSqlBase() {
         try {
             service = new Service(driver);
             sqlQueries = new SqlQueries(driver);
@@ -180,7 +155,7 @@ public class ContactTests {
             mailPage.contactBookButtonClick();
             addNewContactPage = mailPage.contactButtonClick();
             String name = service.minimizeString(service.pocztaInteriaDatabase(sqlQueries.getFemaleFirstName()));
-            String sureName = service.getRandomValue(service.sureNamesList());
+            String sureName = service.minimizeString(service.getRandomValue(service.sureNamesList()));
             addNewContactPage.fillContactNameWindow(name, sureName);
             String email = service.minimizeMailString(name + sureName + service.randomNumber() + service.randomValueFromDomainList());
             addNewContactPage.fillContactMailWindow(email);
@@ -195,13 +170,13 @@ public class ContactTests {
         }
     }
 
-     @AfterTest(alwaysRun = true)
-     public void afterTest() {
-         driver.quit();
-     }
-
-     @AfterMethod(alwaysRun = true)
-     public void afterMethod() {
-         driver.close();
-     }
+   //  @AfterTest(alwaysRun = true)
+   //  public void afterTest() {
+   //      driver.quit();
+   //  }
+//
+   //  @AfterMethod(alwaysRun = true)
+   //  public void afterMethod() {
+   //      driver.close();
+   //  }
 }

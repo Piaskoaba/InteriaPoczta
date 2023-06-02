@@ -9,7 +9,7 @@ public class NewMessagePage extends BasePage {
     public NewMessagePage(WebDriver driver) {
         super(driver);
     }
-    @FindBy(xpath = "//*[@id=\"wrapper\"]/div[2]/div/div/div/div/div[2]/div/div[2]/div[3]/div[3]/div/input")
+    @FindBy(xpath = "//div[@class='composition-to']//input[@ng-model='inputEmail']")
     WebElement newRecipientField;
 
     public void fillNewRecipientField(String newRecipient){
