@@ -139,7 +139,7 @@ public class ContactTests {
         Assert.assertTrue(addNewContactPage.isContactCorrectlyAddedAlert(), "Contact not added");
     }
 
-    @Test
+    @Test(priority = 3, groups = {"all", "critical"})
     public void sendMessage() {
         homePage = new HomePage(driver);
         homePage.cookieButtonClick();
@@ -154,13 +154,14 @@ public class ContactTests {
         Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
         Assert.assertTrue(mailPage.isNewMessageButtonClickable(), "Write new message button is not visible");
         newMessagePage = mailPage.writeNewMessageButtonClick();
-        String recipient = service.
-        newMessagePage.fillNewRecipientField();
+        String recipientName = service.minimizeString(service.pocztaInteriaDatabase(sqlQueries.getMaleFirstName()));
+        String recipientSureName = service.minimizeString(service.pocztaInteriaDatabase(sqlQueries.getMaleSureName()));
+        newMessagePage.fillNewRecipientField(recipientName + recipientSureName);
 
     }
 
     @Test
-    public void sqlBase() {
+    public void addNewContactsqlBase() {
         try {
             service = new Service(driver);
             sqlQueries = new SqlQueries(driver);
@@ -178,22 +179,29 @@ public class ContactTests {
             Assert.assertTrue(mailPage.IsMailIconVisible(), "Icon is not visible");
             mailPage.contactBookButtonClick();
             addNewContactPage = mailPage.contactButtonClick();
-            String name = service.pocztaInteriaDatabase(sqlQueries.getMaleFirstName());
-            String surename = service.getRandomValue(service.sureNamesList());
-            addNewContactPage.fillContactNameWindow(name, surename);
+            String name = service.minimizeString(service.pocztaInteriaDatabase(sqlQueries.getFemaleFirstName()));
+            String sureName = service.getRandomValue(service.sureNamesList());
+            addNewContactPage.fillContactNameWindow(name, sureName);
+            String email = service.minimizeMailString(name + sureName + service.randomNumber() + service.randomValueFromDomainList());
+            addNewContactPage.fillContactMailWindow(email);
+            addNewContactPage.saveContactButtonClick();
+            Assert.assertTrue(addNewContactPage.isContactCorrectlyAddedAlert());
+
+
+
         } catch (Exception exception) {
             System.out.println("Error occurred");
             throw exception;
         }
     }
 
-    @AfterTest(alwaysRun = true)
-    public void afterTest() {
-        driver.quit();
-    }
+     @AfterTest(alwaysRun = true)
+     public void afterTest() {
+         driver.quit();
+     }
 
-    @AfterMethod(alwaysRun = true)
-    public void afterMethod() {
-        driver.close();
-    }
+     @AfterMethod(alwaysRun = true)
+     public void afterMethod() {
+         driver.close();
+     }
 }

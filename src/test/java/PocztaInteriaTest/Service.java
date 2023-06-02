@@ -191,6 +191,15 @@ public class Service {
         ;
         return minimizedString;
     }
+    public String minimizeMailString(String stringToMinimize) {   //pierwsza litera duza, reszta mała
+        int end = stringToMinimize.length();
+        String firstLetter = stringToMinimize.substring(0, 0);
+        String restOfString = stringToMinimize.substring(0, end);
+        String minimizedString = firstLetter + restOfString.toLowerCase();
+        System.out.println("String after lowering letters: " + minimizedString);
+        ;
+        return minimizedString;
+    }
   // public void connectToSqlBase(String sqlQuery) {
   //     String jdbcURL = getCredentialValue("sqlLocalUrl");
   //     String username = getCredentialValue("sqlLocalLogin");
